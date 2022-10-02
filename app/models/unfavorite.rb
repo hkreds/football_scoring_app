@@ -1,0 +1,2 @@
+class Unfavorite < ApplicationRecord
+end

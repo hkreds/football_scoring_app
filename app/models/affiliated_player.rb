@@ -1,0 +1,2 @@
+class AffiliatedPlayer < ApplicationRecord
+end

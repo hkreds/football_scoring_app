@@ -1,0 +1,2 @@
+class ParticipatingTeam < ApplicationRecord
+end

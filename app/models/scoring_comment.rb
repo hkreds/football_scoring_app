@@ -1,0 +1,2 @@
+class ScoringComment < ApplicationRecord
+end
