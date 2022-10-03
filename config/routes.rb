@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show,:edit,:update]
     resources :players, only: [:index,:create,:show,:edit,:update]
     resources :teams, only: [:index,:create,:show,:edit,:update]
-    resources :coventions, only: [:index,:create,:show,:edit,:update]
+    resources :conventions, only: [:index,:create,:show,:edit,:update]
     resources :matches, only: [:index,:create,:show,:edit,:update]
     resources :scorings, only: [:index,:show]
   end

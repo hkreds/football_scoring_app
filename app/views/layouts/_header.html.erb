@@ -13,32 +13,32 @@
       <ul class="navbar-nav" style="flex-direction: row;">
         <% if customer_signed_in? %>
           <li class="mr-2" style="list-style: none;">
-            <%= link_to 'マイページ', class: 'btn btn-outline-light' %>
+            <%= link_to 'マイページ', customer_path(current_customer), class: 'btn btn-outline-light' %>
           </li>
           <li class="mr-2" style="list-style: none;">
-            <%= link_to '会員一覧', class: 'btn btn-outline-light' %>
+            <%= link_to '会員一覧', customers_path, class: 'btn btn-outline-light' %>
           </li>
           <li class="mr-2" style="list-style: none;">
-            <%= link_to 'チーム一覧', class: 'btn btn-outline-light' %>
+            <%= link_to 'チーム一覧', teams_path, class: 'btn btn-outline-light' %>
           </li>
           <li class="mr-2" style="list-style: none;">
             <%= link_to 'ログアウト', destroy_customer_session_path, method: :delete, class: 'btn btn-outline-light' %>
           </li>
         <% elsif admin_signed_in? %>
           <li class="mr-2" style="list-style: none;">
-            <%= link_to "会員一覧", class: 'btn btn-outline-light' %>
+            <%= link_to "会員一覧", admin_root_path, class: 'btn btn-outline-light' %>
           </li>
           <li class="mr-2" style="list-style: none;">
-            <%= link_to "大会一覧", class: 'btn btn-outline-light' %>
+            <%= link_to "大会一覧", admin_conventions_path, class: 'btn btn-outline-light' %>
           </li>
           <li class="mr-2" style="list-style: none;">
-            <%= link_to "試合一覧", class: 'btn btn-outline-light' %>
+            <%= link_to "試合一覧", admin_matches_path, class: 'btn btn-outline-light' %>
           </li>
           <li class="mr-2" style="list-style: none;">
-            <%= link_to "チーム一覧", class: 'btn btn-outline-light' %>
+            <%= link_to "チーム一覧", admin_teams_path, class: 'btn btn-outline-light' %>
           </li>
           <li class="mr-2" style="list-style: none;">
-            <%= link_to "採点一覧", class: 'btn btn-outline-light' %>
+            <%= link_to "採点一覧", admin_scorings_path, class: 'btn btn-outline-light' %>
           </li>
           <li class="mr-2" style="list-style: none;">
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'btn btn-outline-light' %>
