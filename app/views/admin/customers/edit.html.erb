@@ -1,0 +1,44 @@
+<h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
+  <%= @customer.name %>さんの会員情報編集ページ
+</h3>
+<div style="width: 100%; margin-top: 30px; margin-left: 100px;">
+  <%= form_with model: [:admin, @customer] do |f| %>
+    <table class="table table-borderless">
+      <tr>
+        <th>会員ID</th>
+        <td><%= @customer.id %></td>
+      </tr>
+      <tr>
+        <th style="width: 25%;">名前</th>
+        <th>
+          <%= f.text_field :name %>
+        </th>
+      </tr>
+      <tr>
+        <th>画像</th>
+        <th><%= f.file_field :profile_image, accept: "image/*" %></th>
+      </tr>
+      <tr>
+        <th>自己紹介</th>
+        <th><%= f.text_area :introduction %></th>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <th><%= f.email_field :email, autocomplete: "email" %></th>
+      </tr>
+      <tr>
+        <th>会員ステータス</th>
+        <th>
+          <%= f.radio_button :is_deleted, false %>
+          <%= f.label :is_deleted, '有効', value: false %>
+          <%= f.radio_button :is_deleted, true, class: "ml-3" %>
+          <%= f.label :is_deleted, '退会', value: true %>
+        </th>
+      </tr>
+      <tr>
+        <th></th>
+        <th><%= f.submit "変更を保存", class: "btn btn-success btn-lg" %></th>
+      </tr>
+    </table>
+  <% end %>
+</div>
