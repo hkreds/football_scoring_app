@@ -1,5 +1,5 @@
 class Convention < ApplicationRecord
-  has_many :matches
+  has_many :matches, dependent: :destroy
   has_many :participating_teams
   
   validates :name, presence: true
