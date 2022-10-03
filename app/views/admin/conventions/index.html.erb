@@ -13,7 +13,7 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= f.text_field :name, placeholder:"大会名" %></td>
+          <td><%= f.text_field :name, :size=>"40", placeholder:"大会名" %></td>
           <td><%= f.text_field :start_date, placeholder:"20220101" %></td>
           <td><%= f.text_field :end_date, placeholder:"20221231" %></td>
           <td><%= f.submit "新規登録", class: "ml-5 btn btn-primary" %></td>

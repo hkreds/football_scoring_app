@@ -9,12 +9,13 @@ class Admin::ConventionsController < ApplicationController
     if @convention.save
       redirect_to request.referer
     else
-      @conventions = Genre.all
+      @conventions = Convention.all
       render :index
     end
   end
   
   def show
+    @convention = Convention.find(params[:id])
   end
   
   def edit
