@@ -1,0 +1,18 @@
+<P>
+  Football_Scoringへようこそ！<br>
+  このサイトでは皆さんにサッカーの試合について感想の投稿や選手等への採点を行っていただけます。<br>
+  是非、サッカーの好きな皆様の交流を楽しんでください。<br>
+  ※当サイトは閲覧だけであればゲストログインで可能ですが、採点等をしていただく場合は、会員登録が必要になります。
+</P>
+<div>
+  <%= link_to "ゲストログイン",  class: 'btn btn-round' %>
+</div>
+<div>
+  <%= link_to "ログイン", new_customer_session_path, class: 'btn btn-primary' %>
+</div>
+<div>
+  <%= link_to "新規登録", new_customer_registration_path, class: 'btn btn-success' %>
+</div>
+<div>
+  <%= link_to "管理者ログイン", new_admin_session_path, class: 'btn btn-primary' %>
+</div>
