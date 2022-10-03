@@ -8,6 +8,17 @@ Rails.application.routes.draw do
   
   scope module: :public do
     root to: "homes#top"
+    patch 'customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
+    resources :customers, only: [:index,:show,:edit,:update]
+    resources :conventions, only: [:index,:show] do
+      resources :matches, only: [:show] do
+        resources :scorings, except: [:index] do
+          resources :comments, only: [:create]
+        end
+      end
+    end
+    resources :scorings, only: [:index]
+    resources :teams, only: [:index,:show]
   end
   
   # 管理者用
