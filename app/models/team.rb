@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
   has_many :participating_teams, dependent: :destroy
   has_many :affiliated_players, dependent: :destroy
-
+  #対戦チームはホームチームとアウェイチームに分かれます。
   has_many :home_team, class_name: "Opponent", foreign_key: "home_team_id", dependent: :destroy
   has_many :away_team, class_name: "Opponent", foreign_key: "away_team_id", dependent: :destroy
 
