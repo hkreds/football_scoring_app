@@ -8,7 +8,12 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
-    resources :customers, only: [:index,:show,:edit,:update]
+    resources :customers, only: [:index,:show,:edit,:update] do
+      member do
+        get :follows, :followers
+      end
+      resource :relationships, only: [:create, :destroy]
+    end
     patch 'customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
     resources :conventions, only: [:index,:show]
     resources :matches, only: [:show]

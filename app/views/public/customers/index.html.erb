@@ -4,12 +4,12 @@
     <thead>
       <tr>
         <th></th>
-        <th>名前</th>
-        <th>採点投稿数</th>
-        <th>フォロー数</th>
-        <th>フォロワー数</th>
-        <th>いいね合計</th>
-        <th>悪いね合計</th>
+        <th class="text-center">名前</th>
+        <th class="text-center">採点投稿数</th>
+        <th class="text-center">フォロー数</th>
+        <th class="text-center">フォロワー数</th>
+        <th class="text-center">いいね合計</th>
+        <th class="text-center">悪いね合計</th>
         <th></th>
       </tr>
     </thead>
@@ -23,13 +23,19 @@
             <% end %>
           </td>
           <td><%=  %></td>
-          <td><%=  %></td>
-          <td><%=  %></td>
-          <td><%=  %></td>
-          <td><%=  %></td>
+          <td class="text-center"><%= customer.following_customer.count %></td>
+          <td class="text-center"><%= customer.follower_customer.count %></td>
+          <td class="text-center"><%=  %></td>
+          <td class="text-center"><%=  %></td>
           <td class="text-center">
             <% if customer.id == current_customer.id %>
               <%= link_to "編集する", edit_customer_path(customer.id), class: "btn btn-success" %>
+            <% else %>
+              <% if current_customer.following?(customer) %>
+                <%= link_to 'フォロー外す', customer_relationships_path(customer.id), method: :delete %>
+              <% else %>
+                <%= link_to 'フォローする', customer_relationships_path(customer.id), method: :POST %>
+              <% end %>
             <% end %>
           </td>
         </tr>

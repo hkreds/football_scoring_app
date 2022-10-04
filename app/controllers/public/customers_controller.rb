@@ -28,6 +28,21 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
   
+  #フォロー・フォロワー機能
+  def follows
+    @customer = Customer.find(params[:id])
+    @customers = @user.following_customer.all
+    @following_customers = @user.following_customer
+    @follower_customers = @user.follower_customer
+  end
+
+  def followers
+    @customer = Customer.find(params[:id])
+    @customers = @user.follower_customer.all
+    @following_customers = @customer.following_customer
+    @follower_customers = @customer.follower_customer
+  end
+  
   private
   
   def customer_params
