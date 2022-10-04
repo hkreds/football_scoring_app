@@ -1,39 +1,55 @@
 <h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">試合登録・一覧ページ</h3>
+<!--試合登録-->
 <div class="my-5">
   <%= form_with model: [:admin, @match] do |f| %>
     <%= render 'layouts/errors', obj: @match %>
-    <table class="table table-borderless">
+    <table class="table table-borderless" style="width:fit-content">
       <thead>
         <tr>
           <th>大会名</th>
+          <th>開始日時（日本時間）</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><div class="mb-2"><%= f.collection_select :convention_id, Convention.all, :id, :name, {include_blank: "--選択してください--"} %></div></td>
+          <td><div class=""><%= f.collection_select :convention_id, Convention.all, :id, :name, {include_blank: "--選択してください--"} %></div></td>
+          <td><%= f.text_field :start_time, placeholder:"20220101120000" %></td>
         </tr>
       </tbody>
     </table>
-    <table class="table table-borderless">
+    <table class="table table-borderless" style="width:fit-content">
       <thead>
         <tr>
           <th>ホームチーム</th>
+          <th>ホーム得点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= f.collection_select :home_team_id, Team.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+          <td><%= f.number_field :home_goal %></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-borderless" style="width:fit-content">
+      <thead>
+        <tr>
           <th>アウェイチーム</th>
-          <th>開始日時（日本時間）</th>
+          <th>アウェイ得点</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><div class="mb-2"><%= f.collection_select :home_team_id, Team.all, :id, :name, {include_blank: "--選択してください--"} %></div></td>
-          <td><div class="mb-2"><%= f.collection_select :away_team_id, Team.all, :id, :name, {include_blank: "--選択してください--"} %></div></td>
-          <td><%= f.text_field :start_time, placeholder:"20220101120000" %></td>
+          <td><%= f.collection_select :away_team_id, Team.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+          <td><%= f.number_field :away_goal %></td>
           <td><%= f.submit "新規登録", class: "ml-5 btn btn-primary" %></td>
         </tr>
       </tbody>
     </table>
   <% end %>
 </div>
+<!--試合一覧-->
 <table class="table table-hover">
   <thead>
     <tr>
@@ -51,7 +67,14 @@
             <%= match.convention.name %>
           <% end %>
         </td>
-        <td><%#= match.home_team.name %> vs <%#= match.away_team.name %></td>
+        <td class="text-center">
+          <%#= Team.find(params[:match.home_team_id]).name %> vs <%#= Team.find(params[:match.away_team_id]).name %><br>
+          <% if match.home_goal == nil || match.away_goal == nil %>
+            試合前
+          <% else %>
+            <%= match.home_goal %> - <%= match.away_goal %>
+          <% end %>
+        </td>
         <td><%= match.start_time.strftime('%Y/%m/%d %H:%M') %></td>
         <td class="text-center"><%= link_to "編集する", edit_admin_match_path(match.id), class: "btn btn-success" %></td>
       </tr>

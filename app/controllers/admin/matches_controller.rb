@@ -34,7 +34,8 @@ class Admin::MatchesController < ApplicationController
   private
 
   def match_params
-    params.require(:match).permit(:name,:convention_id,:home_team_id,:away_team_id,:start_time)
+    params.require(:match).permit(:name,:convention_id,:home_team_id,:away_team_id,
+                                  :start_time,:home_goal,:away_goal)
   end
   
 end

@@ -4,33 +4,47 @@
 <div class="my-5">
   <%= form_with model: [:admin, @match] do |f| %>
     <%= render 'layouts/errors', obj: @match %>
-    <table class="table table-borderless">
+    <table class="table table-borderless" style="width:fit-content">
       <thead>
         <tr>
           <th>大会名</th>
+          <th>開始日時（日本時間）</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><div class="mb-2"><%= f.collection_select :convention_id, Convention.all, :id, :name, {include_blank: "--選択してください--"} %></div></td>
+          <td><div class=""><%= f.collection_select :convention_id, Convention.all, :id, :name, {include_blank: "--選択してください--"} %></div></td>
+          <td><%= f.text_field :start_time, placeholder:"20220101120000" %></td>
         </tr>
       </tbody>
     </table>
-    <table class="table table-borderless">
+    <table class="table table-borderless" style="width:fit-content">
       <thead>
         <tr>
           <th>ホームチーム</th>
+          <th>ホーム得点</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= f.collection_select :home_team_id, Team.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+          <td><%= f.number_field :home_goal %></td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table table-borderless" style="width:fit-content">
+      <thead>
+        <tr>
           <th>アウェイチーム</th>
-          <th>開始日時（日本時間）</th>
+          <th>アウェイ得点</th>
           <th></th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td><div class="mb-2"><%= f.collection_select :home_team_id, Team.all, :id, :name, {include_blank: "--選択してください--"} %></div></td>
-          <td><div class="mb-2"><%= f.collection_select :away_team_id, Team.all, :id, :name, {include_blank: "--選択してください--"} %></div></td>
-          <td><%= f.text_field :start_time, placeholder:"20220101120000" %></td>
-          <td><%= f.submit "変更を保存", class: "ml-5 btn btn-success" %></td>
+          <td><%= f.collection_select :away_team_id, Team.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+          <td><%= f.number_field :away_goal %></td>
+          <td><%= f.submit "新規登録", class: "ml-5 btn btn-success" %></td>
         </tr>
       </tbody>
     </table>
