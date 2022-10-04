@@ -1,0 +1,39 @@
+<h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
+  <%= @customer.name %>さんの会員情報編集ページ
+</h3>
+<div style="width: 100%; margin-top: 30px; margin-left: 100px;">
+  <%= form_with model: @customer do |f| %>
+    <%= render 'layouts/errors', obj: @customer %>
+    <table class="table table-borderless">
+      <tr>
+        <th style="width: 25%;">名前</th>
+        <th>
+          <%= f.text_field :name, style: "width: 50%;" %>
+        </th>
+      </tr>
+      <tr>
+        <th>画像</th>
+        <th><%= f.file_field :profile_image, accept: "image/*" %></th>
+      </tr>
+      <tr>
+        <th>自己紹介</th>
+        <th><%= f.text_area :introduction, style: "width: 50%;" %></th>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <th><%= f.email_field :email, autocomplete: "email", style: "width: 50%;" %></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th><%= f.submit "変更を保存", class: "btn btn-success btn-lg" %></th>
+      </tr>
+    </table>
+  <% end %>
+</div>
+<div class="row">
+  <p class="ml-5">
+    退会希望の場合は右のボタンをクリック<br>
+    ※退会すると当サイトのコンテンツが閲覧できなくなります。
+  </p>
+  <div class="ml-3  d-flex align-items-end"><%= link_to "退会する", withdraw_path, method: :patch, data: {confirm: '本当に退会しますか?'}, class: "btn btn-danger" %></div>
+</div>

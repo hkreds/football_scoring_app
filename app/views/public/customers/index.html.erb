@@ -1,0 +1,40 @@
+<h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">会員一覧ページ</h3>
+<div class="my-5">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th></th>
+        <th>名前</th>
+        <th>採点投稿数</th>
+        <th>フォロー数</th>
+        <th>フォロワー数</th>
+        <th>いいね合計</th>
+        <th>悪いね合計</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= image_tag customer.get_profile_image(50,100) %></td>
+          <td>
+            <%= link_to customer_path(customer.id) do %>
+              <%= customer.name %>
+            <% end %>
+          </td>
+          <td><%=  %></td>
+          <td><%=  %></td>
+          <td><%=  %></td>
+          <td><%=  %></td>
+          <td><%=  %></td>
+          <td class="text-center">
+            <% if customer.id == current_customer.id %>
+              <%= link_to "編集する", edit_customer_path(customer.id), class: "btn btn-success" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <%= paginate @customers %>
+    </tbody>
+  </table>
+</div>
