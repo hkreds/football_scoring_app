@@ -12,18 +12,18 @@
         </th>
       </tr>
       <tr>
+        <th>メールアドレス</th>
+        <th><%= f.email_field :email, autocomplete: "email", style: "width: 50%;" %></th>
+      </tr>
+      <tr>
+      <tr>
         <th>画像</th>
         <th><%= f.file_field :profile_image, accept: "image/*" %></th>
       </tr>
       <tr>
         <th>自己紹介</th>
-        <th><%= f.text_area :introduction, style: "width: 50%;" %></th>
+        <th><%= f.text_area :introduction, style: "width: 50%; height: 120px;" %></th>
       </tr>
-      <tr>
-        <th>メールアドレス</th>
-        <th><%= f.email_field :email, autocomplete: "email", style: "width: 50%;" %></th>
-      </tr>
-      <tr>
         <th></th>
         <th><%= f.submit "変更を保存", class: "btn btn-success btn-lg" %></th>
       </tr>
