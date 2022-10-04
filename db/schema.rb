@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_02_070124) do
+ActiveRecord::Schema.define(version: 2022_10_04_015607) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -106,14 +106,8 @@ ActiveRecord::Schema.define(version: 2022_10_02_070124) do
     t.integer "away_goal"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "opponents", force: :cascade do |t|
-    t.integer "match_id", null: false
-    t.integer "home_team_id", null: false
-    t.integer "away_team_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "home_team_id"
+    t.integer "away_team_id"
   end
 
   create_table "participating_teams", force: :cascade do |t|
