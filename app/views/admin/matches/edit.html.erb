@@ -1,5 +1,6 @@
 <h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
-  <%= @match.convention.name %><br><%#= @match.home_team.name %> vs <%#= @match.away_team.name %>の試合情報編集
+  <%= @match.convention.name %><br>
+  <strong><%= @match.home_team.name %> vs <%= @match.away_team.name %></strong>の試合情報編集
 </h3>
 <div class="my-5">
   <%= form_with model: [:admin, @match] do |f| %>
@@ -44,7 +45,7 @@
         <tr>
           <td><%= f.collection_select :away_team_id, Team.all, :id, :name, {include_blank: "--選択してください--"} %></td>
           <td><%= f.number_field :away_goal %></td>
-          <td><%= f.submit "新規登録", class: "ml-5 btn btn-success" %></td>
+          <td><%= f.submit "変更を保存", class: "ml-5 btn btn-success" %></td>
         </tr>
       </tbody>
     </table>

@@ -54,7 +54,7 @@
   <thead>
     <tr>
       <th>大会名</th>
-      <th>試合名</th>
+      <th class="text-center">試合名</th>
       <th>開始日時（日本時間）</th>
       <th></th>
     </tr>
@@ -68,7 +68,7 @@
           <% end %>
         </td>
         <td class="text-center">
-          <%#= Team.find(params[:match.home_team_id]).name %> vs <%#= Team.find(params[:match.away_team_id]).name %><br>
+          <%= match.home_team.name %> vs <%= match.away_team.name %><br>
           <% if match.home_goal == nil || match.away_goal == nil %>
             試合前
           <% else %>
