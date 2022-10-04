@@ -13,19 +13,23 @@
   <body>
     <%= render 'layouts/header' %>
     <div class="container my-3">
-      <div class="row">
-        <div style ="width:15%;">
-          <div class="border border-dark mr-3 mb-3" style="height:fit-content;">
-            <%= render 'layouts/left_side_head' %>
+      <% if  admin_signed_in? %>
+        <%= yield %>
+      <% else %>
+        <div class="row">
+          <div style ="width:15%;">
+            <div class="border border-dark mr-3 mb-3" style="height:fit-content;">
+              <%= render 'layouts/left_side_head' %>
+            </div>
+            <div class="border border-dark mr-3" style="height:fit-content;">
+              <%= render 'layouts/left_side_foot' %>
+            </div>
           </div>
-          <div class="border border-dark mr-3" style="height:fit-content;">
-            <%= render 'layouts/left_side_foot' %>
+          <div style="width:80%;">
+            <%= yield %>
           </div>
         </div>
-        <div style="width:80%;">
-          <%= yield %>
-        </div>
-      </div>
+      <% end %>
     </div>
     <%= render 'layouts/footer' %>
   </body>
