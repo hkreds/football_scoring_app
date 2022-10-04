@@ -25,7 +25,7 @@ class Admin::MatchesController < ApplicationController
   def update
     @match = Match.find(params[:id])
     if @match.update(match_params)
-      redirect_to admin_teams_path
+      redirect_to admin_matches_path
     else
       render :edit
     end

@@ -1,7 +1,6 @@
 class Match < ApplicationRecord
   belongs_to :convention
-  belongs_to :home_team
-  belongs_to :away_team
+  belongs_to :team, optional: true
   has_many :competitors, dependent: :destroy
   has_many :scorings, dependent: :destroy
   
