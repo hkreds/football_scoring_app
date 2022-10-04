@@ -1,0 +1,26 @@
+<h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
+  <strong><%= @convention.name %></strong>の編集
+</h3>
+<div class="my-5">
+  <%= form_with model: [:admin, @convention] do |f| %>
+    <%= render 'layouts/errors', obj: @convention %>
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th>大会名</th>
+          <th>開始日</th>
+          <th>終了日</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= f.text_field :name, :size=>"40", placeholder:"大会名" %></td>
+          <td><%= f.text_field :start_date, placeholder:"20220101" %></td>
+          <td><%= f.text_field :end_date, placeholder:"20221231" %></td>
+          <td><%= f.submit "変更する", class: "ml-5 btn btn-success" %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>
