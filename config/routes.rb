@@ -31,8 +31,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "homes#top"
     resources :customers, only: [:show,:edit,:update]
-    resources :players, only: [:index,:create,:show,:edit,:update]
-    resources :teams, only: [:index,:create,:show,:edit,:update]
+    resources :players, only: [:index,:create,:show,:edit,:update] do
+      resources :affiliated_player, only: [:create,:destroy]
+    end
+    resources :teams, only: [:index,:create,:show,:edit,:update] do
+      resources :affiliated_player, only: [:create,:destroy]
+    end
     resources :conventions, only: [:index,:create,:show,:edit,:update]
     resources :matches, only: [:index,:create,:show,:edit,:update]
     resources :scorings, only: [:index,:show]
