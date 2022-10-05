@@ -26,9 +26,9 @@
 <h4 class="px-2 mb-5 ml-5" style="width:fit-content;background-color:#e4e4e4;">出場チーム一覧</h3>
 <ul class="row">
   <% @participating_teams.each do |participating_team| %>
-    <li class="ml-3" style="list-style:none;">
+    <li class="ml-5">
       <%= link_to admin_team_path(participating_team.team_id) do %>
-        <%= participating_team.team_id %>
+        <%= participating_team.team.name %>
       <% end %>
     </li>
   <% end %>

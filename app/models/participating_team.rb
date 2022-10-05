@@ -1,4 +1,4 @@
 class ParticipatingTeam < ApplicationRecord
-  belongs_to :conventions, optional: true
-  belongs_to :teams, optional: true
+  belongs_to :convention, optional: true
+  belongs_to :team, optional: true
 end

@@ -44,7 +44,7 @@
       <tr>
         <td><%= affiliated_player.uniform_number %></td>
         <td><%= affiliated_player.position %></td>
-        <td><%#= affiliated_player.player.name %></td>
+        <td><%= affiliated_player.player.name %></td>
         <td class="text-center"><%= link_to "編集する", edit_admin_affiliated_player_path(affiliated_player.id), class: "btn btn-success" %></td>
       </tr>
     <% end %>

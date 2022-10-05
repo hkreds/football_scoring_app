@@ -1,5 +1,5 @@
 <h4 class="px-2 ml-5" style="width:fit-content;background-color:#e4e4e4;">
-  <%#= @affiliated_player.team.name %>所属選手の情報編集
+  <%= @affiliated_player.team.name %>所属選手の情報編集
 </h4>
 <%= form_with model: [:admin, @affiliated_player] do |f| %>
   <%= render 'layouts/errors', obj: @affiliated_player %>
