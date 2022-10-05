@@ -2,7 +2,7 @@ class Admin::AffiliatedPlayersController < ApplicationController
   def create
     @affiliated_player = AffiliatedPlayer.new(affiliated_player_params)
     if @affiliated_player.save
-      redirect_to admin_team_path(affiliated_player.team_id)
+      redirect_to admin_team_path(@affiliated_player.team_id)
     end
   end
   
