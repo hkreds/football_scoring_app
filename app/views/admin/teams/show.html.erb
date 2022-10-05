@@ -1,3 +1,31 @@
 <h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
   <strong><%= @team.name %></strong>の詳細
 </h3>
+<h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">所属選手の登録</h3>
+<div class="my-5">
+  <%= form_with model: @affiliated_player, url: admin_affiliated_players_path do |f| %>
+    <%= render 'layouts/errors', obj: @affiliated_player %>
+    <table class="table table-borderless">
+      <thead>
+        <tr>
+          <th>ポジション</th>
+          <th>背番号</th>
+          <th>選手名</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= f.select :position, ["GK","DF","MF","FW"], {include_blank: "--選択してください--"} %></td>
+          <td><%= f.number_field :uniform_number %></td>
+          <td><%= f.collection_select :player_id, Player.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+          <td><%= f.hidden_field :team_id, :value => @team.id %></td>
+        </tr>
+        <tr>
+          <td colspan="3"></td>
+          <td class="text-right"><%= f.submit "更新する", class: "ml-5 btn btn-success" %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>
+</div>
