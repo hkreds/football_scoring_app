@@ -1,0 +1,26 @@
+<h4 class="px-2 ml-5" style="width:fit-content;background-color:#e4e4e4;">
+  <%#= @affiliated_player.team.name %>所属選手の情報編集
+</h4>
+<%= form_with model: [:admin, @affiliated_player] do |f| %>
+  <%= render 'layouts/errors', obj: @affiliated_player %>
+  <table class="table table-borderless">
+    <thead>
+      <tr>
+        <th>ポジション</th>
+        <th>背番号</th>
+        <th>選手名</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= f.collection_select :position, AffiliatedPlayer.positions_i18n, :first, :last %></td>
+        <td><%= f.number_field :uniform_number %></td>
+        <td><%= f.collection_select :player_id, Player.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
+        <td class="text-right"><%= f.submit "更新する", class: "ml-5 btn btn-success" %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>

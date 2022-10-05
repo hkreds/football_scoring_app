@@ -33,7 +33,7 @@ Rails.application.routes.draw do
     resources :customers, only: [:show,:edit,:update]
     resources :players, only: [:index,:create,:show,:edit,:update]
     resources :teams, only: [:index,:create,:show,:edit,:update]
-    resources :affiliated_players, only: [:create,:destroy]
+    resources :affiliated_players, only: [:create,:edit,:update,:destroy]
     resources :conventions, only: [:index,:create,:show,:edit,:update]
     resources :matches, only: [:index,:create,:show,:edit,:update]
     resources :scorings, only: [:index,:show]

@@ -6,6 +6,17 @@ class Admin::AffiliatedPlayersController < ApplicationController
     end
   end
   
+  def edit
+    @affiliated_player = AffiliatedPlayer.find(params[:id])
+  end
+  
+  def update
+    @affiliated_player = AffiliatedPlayer.find(params[:id])
+    if @affiliated_player.update(affiliated_player_params)
+      redirect_to admin_team_path(@affiliated_player.team_id)
+    end
+  end
+  
   def destroy
   end
   
