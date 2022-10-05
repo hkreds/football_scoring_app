@@ -16,6 +16,7 @@ class Admin::ConventionsController < ApplicationController
   
   def show
     @convention = Convention.find(params[:id])
+    @matches = Match.where(convention_id: @convention.id)
   end
   
   def edit
