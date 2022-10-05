@@ -3,7 +3,7 @@
 </h3>
 <h4 class="px-2 ml-5" style="width:fit-content;background-color:#e4e4e4;">所属選手の登録</h4>
 <div class="my-5">
-  <%= form_with model: @affiliated_player, url: admin_affiliated_players_path do |f| %>
+  <%= form_with model: [:admin, @affiliated_player] do |f| %>
     <%= render 'layouts/errors', obj: @affiliated_player %>
     <table class="table table-borderless">
       <thead>

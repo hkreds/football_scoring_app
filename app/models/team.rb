@@ -1,6 +1,8 @@
 class Team < ApplicationRecord
-  has_many :participating_teams, dependent: :destroy
-  has_many :affiliated_players, dependent: :destroy
+  #大会には複数のチームが参加しますが、チームは複数の大会に参加します。
+  has_many :participating_teams
+  has_many :conventions, through: :participating_teams
+  accepts_nested_attributes_for :participating_teams, allow_destroy: true
   #試合でチームはホームチームとアウェイチームに分かれます。
   has_many :home_team, class_name: "Match", foreign_key: "home_team_id", dependent: :destroy
   has_many :away_team, class_name: "Match", foreign_key: "away_team_id", dependent: :destroy
