@@ -68,11 +68,13 @@
           <% end %>
         </td>
         <td class="text-center">
-          <%= match.home_team.name %> vs <%= match.away_team.name %><br>
-          <% if match.home_goal == nil || match.away_goal == nil %>
-            試合前
-          <% else %>
-            <%= match.home_goal %> - <%= match.away_goal %>
+          <%= link_to admin_match_path(match.id) do %>
+            <%= match.home_team.name %> vs <%= match.away_team.name %><br>
+            <% if match.home_goal == nil || match.away_goal == nil %>
+              試合前
+            <% else %>
+              <%= match.home_goal %> - <%= match.away_goal %>
+            <% end %>
           <% end %>
         </td>
         <td><%= match.start_time.strftime('%Y/%m/%d %H:%M') %></td>

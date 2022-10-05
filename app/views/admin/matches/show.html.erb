@@ -1,3 +1,12 @@
 <h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
-  <strong><%= @convention.name %></strong>の試合一覧
+  <%= @match.convention.name %><br>
+  <%= @match.home_team.name %> vs <%= @match.away_team.name %>
 </h3>
+<%= @match.start_time.strftime('%Y/%m/%d %H:%M') %>開始
+<h5>
+  <% if @match.home_goal == nil || @match.away_goal == nil %>
+    試合前
+  <% else %>
+    試合結果：<%= @match.home_goal %> - <%= @match.away_goal %>
+  <% end %>
+</h5>
