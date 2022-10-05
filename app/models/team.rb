@@ -4,6 +4,10 @@ class Team < ApplicationRecord
   #試合でチームはホームチームとアウェイチームに分かれます。
   has_many :home_team, class_name: "Match", foreign_key: "home_team_id", dependent: :destroy
   has_many :away_team, class_name: "Match", foreign_key: "away_team_id", dependent: :destroy
+  #チームは複数の選手が所属しますが、選手は複数のチームに所属する可能性があります。
+  has_many :affiliated_players
+  has_many :players, through: :affiliated_players
+  accepts_nested_attributes_for :affiliated_players, allow_destroy: true
 
   validates :name, presence: true
   validates :abbreviation, presence: true
