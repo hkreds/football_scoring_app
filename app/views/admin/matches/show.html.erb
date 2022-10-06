@@ -10,37 +10,74 @@
     試合結果：<%= @match.home_goal %> - <%= @match.away_goal %>
   <% end %>
 </h5>
-<h4 class="px-2 mb-1 ml-5" style="width:fit-content;background-color:#e4e4e4;">出場選手登録</h3>
-<div class="my-1 ml-5">
-  <%= form_with model:[:admin, @competitor] do |f| %>
-    <%= render 'layouts/errors', obj: @competitor %>
-    <table class="table table-borderless">
-      <thead>
-        <tr>
-          <th>ポジション</th>
-          <th>選手名</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><%= f.collection_select :position, Competitor.positions_i18n, :first, :last %></td>
-          <td><%= f.collection_select :player_id, Player.all, :id, :name, {include_blank: "--選択してください--"} %></td>
-          <td><%= f.hidden_field :match_id, :value => @match.id %></td>
-          <td><%= f.submit "新規登録", class: "btn btn-primary" %></td>
-        </tr>
-      </tbody>
-    </table>
-  <% end %>
+<h4 class="px-2 mb-1 ml-3" style="width:fit-content;background-color:#e4e4e4;">出場選手登録</h3>
+<div class="row">
+  <div class="my-1 pl-5" style="width:50%">
+    <%= form_with model:[:admin, @competitor] do |f| %>
+      <%= render 'layouts/errors', obj: @competitor %>
+      <div class="border-right border-dark pr-5">
+        <h5 class="font-weight-bold">ホーム</h5>
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th>ポジション</th>
+              <th>選手名</th>
+              <th>背番号</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= f.collection_select :position, Competitor.positions_i18n, :first, :last %></td>
+              <td><%= f.collection_select :player_id, Player.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+              <td><%= f.text_field :uniform_number, :size=>"1" %></td>
+            </tr>
+            <tr>
+              <td><%= f.hidden_field :team_id, :value => @match.home_team.id %></td>
+              <td><%= f.hidden_field :match_id, :value => @match.id %></td>
+              <td><%= f.submit "新規登録", class: "btn btn-primary" %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
+  <div class="my-1 pl-2" style="width:40%">
+    <%= form_with model:[:admin, @competitor] do |f| %>
+      <%= render 'layouts/errors', obj: @competitor %>
+      <div class="pl-3">
+        <h5 class="font-weight-bold">アウェイ</h5>
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th>ポジション</th>
+              <th>選手名</th>
+              <th>背番号</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= f.collection_select :position, Competitor.positions_i18n, :first, :last %></td>
+              <td><%= f.collection_select :player_id, Player.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+              <td><%= f.text_field :uniform_number, :size=>"1" %></td>
+            </tr>
+            <tr>
+              <td><%= f.hidden_field :team_id, :value => @match.away_team.id %></td>
+              <td><%= f.hidden_field :match_id, :value => @match.id %></td>
+              <td><%= f.submit "新規登録", class: "btn btn-primary" %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <% end %>
+  </div>
 </div>
-<h4 class="px-2 mb-1 ml-5" style="width:fit-content;background-color:#e4e4e4;">出場選手一覧</h3>
+<h4 class="px-2 mb-1 ml-3" style="width:fit-content;background-color:#e4e4e4;">出場選手一覧</h3>
 <div class="row">
   <div>
     <table class="table table-hover">
       <thead>
         <tr>
-          <th colspan="3" class="text-center"><%= @match.home_team.name %></th>
+          <th colspan="4" class="text-center"><%= @match.home_team.name %></th>
         </tr>
       </thead>
       <thead>
@@ -48,29 +85,32 @@
           <th>ポジション</th>
           <th>背番号</th>
           <th>選手名</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <% @competitors.each do |competitor| %>
-          <tr>
-            <td><%= competitor.position %></td>
-            <td><%#= competitor.player.team.uniform_number %></td>
-            <td>
-              <%= link_to admin_player_path(competitor.player.id) do %>
-                <%= competitor.player.name %>
-              <% end %>
-            </td>
-            <td class="text-center"><%#= link_to "編集する", edit_admin_convention_path(convention.id), class: "btn btn-success" %></td>
-          </tr>
+          <% if competitor.team_id == @match.home_team_id %>
+            <tr>
+              <td><%= competitor.position %></td>
+              <td><%= competitor.uniform_number %></td>
+              <td>
+                <%= link_to admin_player_path(competitor.player.id) do %>
+                  <%= competitor.player.name %>
+                <% end %>
+              </td>
+              <td class="text-center"><%= link_to "編集する", edit_admin_competitor_path(competitor.id), class: "btn btn-success" %></td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
   </div>
-  <div>
+  <div class="ml-3">
     <table class="table table-hover">
       <thead>
         <tr>
-          <th colspan="3" class="text-center"><%= @match.away_team.name %></th>
+          <th colspan="4" class="text-center"><%= @match.away_team.name %></th>
         </tr>
       </thead>
       <thead>
@@ -78,20 +118,23 @@
           <th>ポジション</th>
           <th>背番号</th>
           <th>選手名</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <% @competitors.each do |competitor| %>
-          <tr>
-            <td><%= competitor.position %></td>
-            <td><%#= competitor.player.team.uniform_number %></td>
-            <td>
-              <%= link_to admin_player_path(competitor.player.id) do %>
-                <%= competitor.player.name %>
-              <% end %>
-            </td>
-            <td class="text-center"><%#= link_to "編集する", edit_admin_convention_path(convention.id), class: "btn btn-success" %></td>
-          </tr>
+          <% if competitor.team_id == @match.away_team_id %>
+            <tr>
+              <td><%= competitor.position %></td>
+              <td><%= competitor.uniform_number %></td>
+              <td>
+                <%= link_to admin_player_path(competitor.player.id) do %>
+                  <%= competitor.player.name %>
+                <% end %>
+              </td>
+              <td class="text-center"><%= link_to "編集する", edit_admin_competitor_path(competitor.id), class: "btn btn-success" %></td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>
