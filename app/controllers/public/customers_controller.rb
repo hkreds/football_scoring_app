@@ -31,14 +31,14 @@ class Public::CustomersController < ApplicationController
   #フォロー・フォロワー機能
   def follows
     @customer = Customer.find(params[:id])
-    @customers = @customer.following_customer.all
+    @customers = @customer.following_customer.page(params[:page])
     @following_customers = @customer.following_customer
     @follower_customers = @customer.follower_customer
   end
 
   def followers
     @customer = Customer.find(params[:id])
-    @customers = @customer.follower_customer.all
+    @customers = @customer.follower_customer.page(params[:page])
     @following_customers = @customer.following_customer
     @follower_customers = @customer.follower_customer
   end
