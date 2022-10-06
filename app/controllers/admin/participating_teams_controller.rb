@@ -3,6 +3,9 @@ class Admin::ParticipatingTeamsController < ApplicationController
     @participating_team = ParticipatingTeam.new(participating_team_params)
     if @participating_team.save
       redirect_to admin_convention_path(@participating_team.convention_id)
+    else
+      flash[:alert] = "正しく入力されていません"
+      redirect_to admin_convention_path(@participating_team.convention_id)
     end
   end
   

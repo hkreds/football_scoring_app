@@ -3,6 +3,9 @@ class Admin::AffiliatedPlayersController < ApplicationController
     @affiliated_player = AffiliatedPlayer.new(affiliated_player_params)
     if @affiliated_player.save
       redirect_to admin_team_path(@affiliated_player.team_id)
+    else
+      flash[:alert] = "正しく入力されていません"
+      redirect_to admin_team_path(@affiliated_player.team_id)
     end
   end
   

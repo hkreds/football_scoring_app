@@ -92,8 +92,8 @@
         <% @competitors.each do |competitor| %>
           <% if competitor.team_id == @match.home_team_id %>
             <tr>
-              <td><%= competitor.position %></td>
-              <td><%= competitor.uniform_number %></td>
+              <td class="text-center"><%= competitor.position %></td>
+              <td class="text-center"><%= competitor.uniform_number %></td>
               <td>
                 <%= link_to admin_player_path(competitor.player.id) do %>
                   <%= competitor.player.name %>
@@ -125,8 +125,8 @@
         <% @competitors.each do |competitor| %>
           <% if competitor.team_id == @match.away_team_id %>
             <tr>
-              <td><%= competitor.position %></td>
-              <td><%= competitor.uniform_number %></td>
+              <td class="text-center"><%= competitor.position %></td>
+              <td class="text-center"><%= competitor.uniform_number %></td>
               <td>
                 <%= link_to admin_player_path(competitor.player.id) do %>
                   <%= competitor.player.name %>

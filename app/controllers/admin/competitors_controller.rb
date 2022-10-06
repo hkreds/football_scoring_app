@@ -3,6 +3,9 @@ class Admin::CompetitorsController < ApplicationController
     @competitor = Competitor.new(competitor_params)
     if @competitor.save
       redirect_to admin_match_path(@competitor.match_id)
+    else
+      flash[:alert] = "正しく入力されていません"
+      redirect_to admin_match_path(@competitor.match_id)
     end
   end
 
