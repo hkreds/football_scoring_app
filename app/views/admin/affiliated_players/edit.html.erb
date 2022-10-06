@@ -18,8 +18,11 @@
         <td><%= f.collection_select :player_id, Player.all, :id, :name, {include_blank: "--選択してください--"} %></td>
       </tr>
       <tr>
-        <td colspan="3"></td>
-        <td class="text-right"><%= f.submit "更新する", class: "ml-5 btn btn-success" %></td>
+        <td colspan="2"></td>
+        <td class="text-right"><%= f.submit "更新する", class: "btn btn-success" %></td>
+        <td>
+          <%= link_to "削除", admin_affiliated_player_path(@affiliated_player.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "ml-2 btn btn-danger" %>
+        </td>
       </tr>
     </tbody>
   </table>

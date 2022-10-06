@@ -2,7 +2,7 @@
   <strong><%= @team.name %></strong>の詳細
 </h3>
 <h4 class="px-2 ml-5" style="width:fit-content;background-color:#e4e4e4;">所属選手の登録</h4>
-<div class="my-5">
+<div class="my-">
   <%= form_with model: [:admin, @affiliated_player] do |f| %>
     <%= render 'layouts/errors', obj: @affiliated_player %>
     <table class="table table-borderless">

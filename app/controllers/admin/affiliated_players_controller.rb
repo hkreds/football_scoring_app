@@ -18,6 +18,9 @@ class Admin::AffiliatedPlayersController < ApplicationController
   end
   
   def destroy
+    @affiliated_player = AffiliatedPlayer.find(params[:id])
+    @affiliated_player.destroy
+    redirect_to admin_team_path(@affiliated_player.team_id)
   end
   
   private
