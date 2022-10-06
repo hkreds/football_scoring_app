@@ -37,6 +37,7 @@ Rails.application.routes.draw do
     resources :conventions, only: [:index,:create,:show,:edit,:update]
     resources :participating_teams, only: [:create,:destroy]
     resources :matches, only: [:index,:create,:show,:edit,:update]
+    resources :competitors, only: [:create,:destroy]
     resources :scorings, only: [:index,:show]
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
