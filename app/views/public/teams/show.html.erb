@@ -1,0 +1,28 @@
+<h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
+  <strong><%= @team.name %></strong>の詳細
+</h3>
+<h4 class="px-2 ml-5" style="width:fit-content;background-color:#e4e4e4;">所属選手の一覧</h4>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>背番号</th>
+      <th>ポジション</th>
+      <th>選手名</th>
+      <th>生年月日</th>
+      <th>身長</th>
+      <th>体重</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @affiliated_players.each do |affiliated_player| %>
+      <tr>
+        <td><%= affiliated_player.uniform_number %></td>
+        <td><%= affiliated_player.position %></td>
+        <td><%= affiliated_player.player.name %></td>
+        <td><%= affiliated_player.player.birthday.strftime("%Y年%m月%d日") %></td>
+        <td><%= affiliated_player.player.height %>cm</td>
+        <td><%= affiliated_player.player.weight %>kg</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
