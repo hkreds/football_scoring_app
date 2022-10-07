@@ -4,7 +4,7 @@
     <%= @match.home_team.name %> vs <%= @match.away_team.name %>
   </h3>
   <div class="ml-3 d-flex align-items-end">
-    <%= link_to "新規採点を行う", new_scoring_path, class: "btn btn-secondary" %>
+    <%= link_to "新規採点を行う", new_match_scoring_path(@match.id), class: "btn btn-secondary" %>
   </div>
 </div>
 <%= @match.start_time.strftime('%Y/%m/%d %H:%M') %>開始
