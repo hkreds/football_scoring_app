@@ -17,7 +17,7 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th colspan="3" class="text-center"><%= @match.home_team.name %></th>
+            <th colspan="4" class="text-center"><%= @match.home_team.name %></th>
           </tr>
         </thead>
         <thead>
@@ -30,15 +30,19 @@
         <tbody>
           <% @competitors.each do |competitor| %>
             <% if competitor.team_id == @match.home_team_id %>
-              <%= f.fields_for @player_scoring do |i| %>
+              <% new_scoring = competitor.player_scorings.build %>
+              <%= f.fields_for :player_scorings, new_scoring do |player_scoring_form| %>
                 <tr>
                   <td class="text-center"><%= competitor.position %></td>
                   <td class="text-center"><%= competitor.uniform_number %></td>
                   <td><%= competitor.player.name %></td>
-                  <td><%= i.text_feild :score %></td>
+                  <td><%= player_scoring_form.text_field :score %></td>
                 </tr>
                 <tr>
-                  <td colspan="4"><%= i.text_feild :review %></td>
+                  <td colspan="4">
+                    <%= player_scoring_form.text_field :review %>
+                    <%= player_scoring_form.hidden_field :competitor_id, :value => competitor.id %>
+                  </td>
                 </tr>
               <% end %>
             <% end %>
@@ -50,7 +54,7 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th colspan="3" class="text-center"><%= @match.away_team.name %></th>
+            <th colspan="4" class="text-center"><%= @match.away_team.name %></th>
           </tr>
         </thead>
         <thead>
@@ -67,13 +71,13 @@
                 <td class="text-center"><%= competitor.position %></td>
                 <td class="text-center"><%= competitor.uniform_number %></td>
                 <td><%= competitor.player.name %></td>
-                <%= f.fields_for :player_scorings do |i| %>
-                  <td><%= i.text_feild :score %></td>
               </tr>
-                <tr>
-                  <td colspan="4"><%= i.text_feild :review %></td>
-                </tr>
-              <% end %>
+              <tr>
+                <td colspan="4">
+                  <%#= i.text_field :review %>
+                  <%#= i.hidden_field :match_id, :value => @match.id %>
+                </td>
+              </tr>
             <% end %>
           <% end %>
         </tbody>
