@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :scorings, except: [:new] do
       resources :comments, only: [:create]
     end
+    resources :player_scoring, only: [:create,:update]
     resources :teams, only: [:index,:show]
   end
   # 管理者用

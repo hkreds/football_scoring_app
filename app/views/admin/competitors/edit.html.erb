@@ -2,7 +2,7 @@
   <%= @match.convention.name %><br>
   <%= @match.home_team.name %> vs <%= @match.away_team.name %> の出場選手編集
 </h3>
-<div class="my-1 pl-2" style="width:60%">
+<div class="my-1 pl-2" style="width:70%">
   <%= form_with model:[:admin, @competitor] do |f| %>
     <%= render 'layouts/errors', obj: @competitor %>
     <div class="pl-3">
@@ -13,6 +13,7 @@
             <th>ポジション</th>
             <th>選手名</th>
             <th>背番号</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

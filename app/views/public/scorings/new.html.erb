@@ -11,7 +11,7 @@
   <% end %>
 </h5>
 <h4 class="px-2 mb-1 ml-3" style="width:fit-content;background-color:#e4e4e4;">出場選手一覧</h3>
-<%= form_with model:[:admin, @scoring] do |f| %>
+<%= form_with model: @scoring do |f| %>
   <div class="row">
     <div>
       <table class="table table-hover">
@@ -30,11 +30,17 @@
         <tbody>
           <% @competitors.each do |competitor| %>
             <% if competitor.team_id == @match.home_team_id %>
-              <tr>
-                <td class="text-center"><%= competitor.position %></td>
-                <td class="text-center"><%= competitor.uniform_number %></td>
-                <td><%= competitor.player.name %></td>
-              </tr>
+              <%= f.fields_for @player_scoring do |i| %>
+                <tr>
+                  <td class="text-center"><%= competitor.position %></td>
+                  <td class="text-center"><%= competitor.uniform_number %></td>
+                  <td><%= competitor.player.name %></td>
+                  <td><%= i.text_feild :score %></td>
+                </tr>
+                <tr>
+                  <td colspan="4"><%= i.text_feild :review %></td>
+                </tr>
+              <% end %>
             <% end %>
           <% end %>
         </tbody>
@@ -61,11 +67,20 @@
                 <td class="text-center"><%= competitor.position %></td>
                 <td class="text-center"><%= competitor.uniform_number %></td>
                 <td><%= competitor.player.name %></td>
+                <%= f.fields_for :player_scorings do |i| %>
+                  <td><%= i.text_feild :score %></td>
               </tr>
+                <tr>
+                  <td colspan="4"><%= i.text_feild :review %></td>
+                </tr>
+              <% end %>
             <% end %>
           <% end %>
         </tbody>
       </table>
     </div>
   </div>
+  <%= f.hidden_field :customer_id, :value => current_customer.id %>
+  <%= f.hidden_field :match_id, :value => @match.id %>
+  <%= f.submit "登録する", class: "btn btn-primary" %>
 <% end %>

@@ -3,12 +3,18 @@ class Public::ScoringsController < ApplicationController
     @scoring = Scoring.new
     @match = Match.find(params[:match_id])
     @competitors = @match.competitors.all
+    @player_scoring = PlayerScoring.new
   end
   
   def create
     @scoring = Scoring.new(scoring_params)
-    @scoring.save
+    @player_scoring = PlayerScoring.new(player_scoring_params)
+    @scoring.save && @player_scoring.save
     redirect_to scoring_path(@scoring.id)
+  end
+  
+  def show
+    @scoring = Scoring.find(params[:id])
   end
 
   def edit
@@ -32,6 +38,8 @@ class Public::ScoringsController < ApplicationController
   private
 
   def scoring_params
-    params.require(:scoring).permit(:match_id,:competitor_id)
+    params.require(:scoring).permit(:match_id,:customer_id, player_scorings_attributes:
+      [:scoring_id,:competitor_id,:score,:review])
   end
+  
 end
