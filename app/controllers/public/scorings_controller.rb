@@ -7,8 +7,12 @@ class Public::ScoringsController < ApplicationController
   
   def create
     @scoring = Scoring.new(scoring_params)
-    @scoring.save
-    redirect_to scoring_path(@scoring.id)
+    if @scoring.save
+      redirect_to scoring_path(@scoring.id)
+    else
+      flash[:alert] = "正しく入力されていません"
+      redirect_to request.referer
+    end
   end
   
   def show
