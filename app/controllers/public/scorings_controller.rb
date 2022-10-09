@@ -4,19 +4,26 @@ class Public::ScoringsController < ApplicationController
     @match = Match.find(params[:match_id])
     @competitors = @match.competitors.all
   end
-  
+
   def create
     @scoring = Scoring.new(scoring_params)
     if @scoring.save
+      flash[:alert] = "登録しました"
       redirect_to scoring_path(@scoring.id)
     else
       flash[:alert] = "正しく入力されていません"
       redirect_to request.referer
     end
   end
-  
+
+  def index
+    @scorings = Scoring.page(params[:page])
+  end
+
   def show
-    @scoring = Scoring.find(params[:id])
+    @scoring = Scoring.new
+    @match = Match.find(params[:match_id])
+    @competitors = @match.competitors.all
   end
 
   def edit
@@ -38,10 +45,10 @@ class Public::ScoringsController < ApplicationController
   end
 
   private
-  
+
   def scoring_params
     params.require(:scoring).permit(:match_id,:customer_id, player_scorings_attributes:
       [:scoring_id,:competitor_id,:score,:review])
   end
-  
+
 end

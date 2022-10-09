@@ -1,0 +1,35 @@
+<h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">採点一覧ページ</h3>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>会員名</th>
+      <th>試合名</th>
+      <th>いいね数</th>
+      <th>悪いね数</th>
+      <th>コメント数</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @scorings.each do |scoring| %>
+      <tr>
+        <td>
+          <%= link_to customer_path(scoring.customer.id) do %>
+            <%= scoring.customer.name %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to match_path(scoring.match_id) do %>
+            <%= scoring.match.convention.name %><br>
+            <%= scoring.match.home_team.name %>vs<%= scoring.match.away_team.name %>
+          <% end %>
+        </td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><%= link_to "Show",scoring_path(scoring.id) %></td>
+      </tr>
+    <% end %>
+    <%= paginate @scorings %>
+  </tbody>
+</table>
