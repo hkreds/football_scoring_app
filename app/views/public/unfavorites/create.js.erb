@@ -1,0 +1,2 @@
+$(".unfavorite-btn_<%= @scoring.id %>").html("<%= escape_javascript(render partial: 'public/unfavorites/unfavorite-btn', locals: {scoring: @scoring}) %>");
+<!--インスタンス変数は、favorites_controllerのcreateアクションで定義されたものが使用できます。-->

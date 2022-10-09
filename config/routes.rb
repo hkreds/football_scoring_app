@@ -19,7 +19,9 @@ Rails.application.routes.draw do
       resources :scorings, only: [:new]
     end
     resources :scorings, except: [:new] do
-      resources :comments, only: [:create]
+      resource :favorites, only: [:create, :destroy]
+      resource :unfavorites, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
     end
     resources :player_scoring, only: [:create,:update]
     resources :teams, only: [:index,:show]

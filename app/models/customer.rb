@@ -21,6 +21,9 @@ class Customer < ApplicationRecord
   def following?(customer)
     following_customer.include?(customer)
   end
+  #いいね・悪いね機能
+  has_many :favorites, dependent: :destroy
+  has_many :unfavorites, dependent: :destroy
 
   validates :name, presence: true
 

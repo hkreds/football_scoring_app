@@ -22,8 +22,8 @@
           <%= scoring.match.convention.name %><br>
           <%= scoring.match.home_team.name %>vs<%= scoring.match.away_team.name %>
         </td>
-        <td></td>
-        <td></td>
+        <td class="favorite-btn_<%= scoring.id %>"><%= render "public/favorites/favorite-btn", scoring: scoring %></td>
+        <td class="unfavorite-btn_<%= scoring.id %>"><%= render "public/unfavorites/unfavorite-btn", scoring: scoring %></td>
         <td></td>
         <td><%= link_to "Show",scoring_path(scoring.id) %></td>
       </tr>
