@@ -1,22 +1,27 @@
 <h3 class="px-2 ml-3" style="width:fit-content;background-color:#e4e4e4;">
-  <%= @match.convention.name %><br>
-  <%= @match.home_team.name %> vs <%= @match.away_team.name %><strong> 採点内容</strong>
+  <%= @scoring.match.convention.name %><br>
+  <%= @scoring.match.home_team.name %> vs <%= @scoring.match.away_team.name %><strong> 採点内容</strong>
 </h3>
-<%= @match.start_time.strftime('%Y/%m/%d %H:%M') %>開始
+<%= @scoring.match.start_time.strftime('%Y/%m/%d %H:%M') %>開始
 <h5 class="text-center">
-  <% if @match.home_goal == nil || @match.away_goal == nil %>
+  <% if @scoring.match.home_goal == nil || @scoring.match.away_goal == nil %>
     試合前
   <% else %>
-    試合結果：<%= @match.home_goal %> - <%= @match.away_goal %>
+    試合結果：<%= @scoring.match.home_goal %> - <%= @scoring.match.away_goal %>
   <% end %>
 </h5>
 <h4 class="px-2 mb-1 ml-3" style="width:fit-content;background-color:#e4e4e4;">出場選手一覧</h3>
+<div class="ml-3">
+    <% if @scoring.customer.id == current_customer.id %>
+      <%= link_to "編集する", edit_match_scoring_path(@scoring.match_id,@scoring.id), class: "btn btn-success" %>
+    <% end %>
+  </div>
 <div class="row">
-  <div>
+  <div class="border-right pr-3 mx-3">
     <table class="table table-hover">
       <thead>
         <tr>
-          <th colspan="3" class="text-center"><%= @match.home_team.name %></th>
+          <th colspan="4" class="text-center"><%= @scoring.match.home_team.name %></th>
         </tr>
       </thead>
       <thead>
@@ -24,26 +29,35 @@
           <th>ポジション</th>
           <th>背番号</th>
           <th>選手名</th>
+          <th>採点</th>
         </tr>
       </thead>
       <tbody>
-        <% @competitors.each do |competitor| %>
-          <% if competitor.team_id == @match.home_team_id %>
+        <% @scoring.player_scorings.each do |player_scoring| %>
+          <% if player_scoring.competitor.team_id == @scoring.match.home_team_id %>
             <tr>
-              <td class="text-center"><%= competitor.position %></td>
-              <td class="text-center"><%= competitor.uniform_number %></td>
-              <td><%= competitor.player.name %></td>
+              <td class="text-center"><%= player_scoring.competitor.position %></td>
+              <td class="text-center"><%= player_scoring.competitor.uniform_number %></td>
+              <td><%= player_scoring.competitor.player.name %></td>
+              <td><%= player_scoring.score %>
+            </tr>
+            <tr>
+              <% if player_scoring.review.present? %>
+                <td colspan="4"><%= player_scoring.review %></td>
+              <% else %>
+                <td colspan="4">寸評なし</td>
+              <% end %>
             </tr>
           <% end %>
         <% end %>
       </tbody>
     </table>
   </div>
-  <div class="ml-3">
+  <div>
     <table class="table table-hover">
       <thead>
         <tr>
-          <th colspan="3" class="text-center"><%= @match.away_team.name %></th>
+          <th colspan="4" class="text-center"><%= @scoring.match.away_team.name %></th>
         </tr>
       </thead>
       <thead>
@@ -51,15 +65,24 @@
           <th>ポジション</th>
           <th>背番号</th>
           <th>選手名</th>
+          <th>採点</th>
         </tr>
       </thead>
       <tbody>
-        <% @competitors.each do |competitor| %>
-          <% if competitor.team_id == @match.away_team_id %>
+        <% @scoring.player_scorings.each do |player_scoring| %>
+          <% if player_scoring.competitor.team_id == @scoring.match.away_team_id %>
             <tr>
-              <td class="text-center"><%= competitor.position %></td>
-              <td class="text-center"><%= competitor.uniform_number %></td>
-              <td><%= competitor.player.name %></td>
+              <td class="text-center"><%= player_scoring.competitor.position %></td>
+              <td class="text-center"><%= player_scoring.competitor.uniform_number %></td>
+              <td><%= player_scoring.competitor.player.name %></td>
+              <td><%= player_scoring.score %>
+            </tr>
+            <tr>
+              <% if player_scoring.review.present? %>
+                <td colspan="4"><%= player_scoring.review %></td>
+              <% else %>
+                <td colspan="4">寸評なし</td>
+              <% end %>
             </tr>
           <% end %>
         <% end %>

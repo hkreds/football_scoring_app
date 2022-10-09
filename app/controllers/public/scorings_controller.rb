@@ -21,14 +21,13 @@ class Public::ScoringsController < ApplicationController
   end
 
   def show
-    @scoring = Scoring.new
-    @match = Match.find(params[:match_id])
-    @competitors = @match.competitors.all
+    @scoring = Scoring.find(params[:id])
   end
 
   def edit
-    @scoring = Scoring.find(params[:id])
-    @match = @competitor.match
+    @scoring = Scoring.new
+    @match = Match.find(params[:match_id])
+    @competitors = @match.competitors.all
   end
 
   def update
