@@ -16,9 +16,9 @@ Rails.application.routes.draw do
     patch 'customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
     resources :conventions, only: [:index,:show]
     resources :matches, only: [:show] do
-      resources :scorings, only: [:new,:edit]
+      resources :scorings, only: [:new]
     end
-    resources :scorings, except: [:new,:edit] do
+    resources :scorings, except: [:new] do
       resources :comments, only: [:create]
     end
     resources :player_scoring, only: [:create,:update]

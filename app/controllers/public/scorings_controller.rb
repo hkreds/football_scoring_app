@@ -25,21 +25,22 @@ class Public::ScoringsController < ApplicationController
   end
 
   def edit
-    @scoring = Scoring.new
-    @match = Match.find(params[:match_id])
-    @competitors = @match.competitors.all
+    @scoring = Scoring.find(params[:id])
   end
 
   def update
     @scoring = Scoring.find(params[:id])
     if @scoring.update(scoring_params)
-      redirect_to match_path(@scoring.id)
+      redirect_to scoring_path(@scoring.id)
+    else
+      render :edit
     end
   end
 
   def destroy
     @scoring = Scoring.find(params[:id])
     @scoring.destroy
+    @scoring.player_scorings.destroy_all
     redirect_to match_path(@scoring.match_id)
   end
 

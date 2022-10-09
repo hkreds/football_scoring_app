@@ -12,10 +12,10 @@
 </h5>
 <h4 class="px-2 mb-1 ml-3" style="width:fit-content;background-color:#e4e4e4;">出場選手一覧</h3>
 <div class="ml-3">
-    <% if @scoring.customer.id == current_customer.id %>
-      <%= link_to "編集する", edit_match_scoring_path(@scoring.match_id,@scoring.id), class: "btn btn-success" %>
-    <% end %>
-  </div>
+  <% if @scoring.customer.id == current_customer.id %>
+    <%= link_to "編集する", edit_scoring_path(@scoring.id), class: "btn btn-success" %>
+  <% end %>
+</div>
 <div class="row">
   <div class="border-right pr-3 mx-3">
     <table class="table table-hover">
@@ -89,4 +89,9 @@
       </tbody>
     </table>
   </div>
+</div>
+<div class="text-right">
+  <% if @scoring.customer.id == current_customer.id %>
+    <%= link_to "採点の削除", scoring_path(@scoring.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "ml-2 btn btn-danger" %>
+  <% end %>
 </div>
