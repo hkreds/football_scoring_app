@@ -19,10 +19,8 @@
           <% end %>
         </td>
         <td>
-          <%= link_to match_path(scoring.match_id) do %>
-            <%= scoring.match.convention.name %><br>
-            <%= scoring.match.home_team.name %>vs<%= scoring.match.away_team.name %>
-          <% end %>
+          <%= scoring.match.convention.name %><br>
+          <%= scoring.match.home_team.name %>vs<%= scoring.match.away_team.name %>
         </td>
         <td></td>
         <td></td>
