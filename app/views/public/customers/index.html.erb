@@ -22,7 +22,7 @@
               <%= customer.name %>
             <% end %>
           </td>
-          <td><%=  %></td>
+          <td class="text-center"><%= customer.scorings.count %></td>
           <td class="text-center">
             <%= link_to follows_customer_path(customer) do %>
               <%= customer.following_customer.count %>

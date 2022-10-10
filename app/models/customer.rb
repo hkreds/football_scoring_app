@@ -24,8 +24,9 @@ class Customer < ApplicationRecord
   #いいね・悪いね機能
   has_many :favorites, dependent: :destroy
   has_many :unfavorites, dependent: :destroy
-  
-  has_many:scoring_comments, dependent: :destroy
+
+  has_many :scorings,dependent: :destroy
+  has_many :scoring_comments, dependent: :destroy
 
   validates :name, presence: true
 
