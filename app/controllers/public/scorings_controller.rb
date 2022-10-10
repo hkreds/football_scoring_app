@@ -22,6 +22,7 @@ class Public::ScoringsController < ApplicationController
 
   def show
     @scoring = Scoring.find(params[:id])
+    @scoring_comment = ScoringComment.new
   end
 
   def edit

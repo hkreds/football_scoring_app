@@ -1,6 +1,7 @@
 class Scoring < ApplicationRecord
   belongs_to :customer
   belongs_to :match
+  has_many :scoring_comments, dependent: :destroy
   #複数の出場選手に採点を行いますが、出場選手は複数の採点をされます。
   has_many :player_scorings
   has_many :competitors, through: :player_scorings

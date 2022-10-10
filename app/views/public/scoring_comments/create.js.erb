@@ -1,0 +1,1 @@
+$(".comment-form_<%= @scoring.id %>").html("<%= escape_javascript(render partial: 'public/scoring_comments/comment-form', locals: {scoring: @scoring, scoring_comment: @scoring_comment}) %>");
