@@ -32,9 +32,11 @@ class Public::ScoringsController < ApplicationController
   def update
     @scoring = Scoring.find(params[:id])
     if @scoring.update(scoring_params)
+      flash[:alert] = "更新しました"
       redirect_to scoring_path(@scoring.id)
     else
-      render :edit
+      flash[:alert] = "正しく入力されていません"
+      redirect_to request.referer
     end
   end
 
@@ -49,7 +51,7 @@ class Public::ScoringsController < ApplicationController
 
   def scoring_params
     params.require(:scoring).permit(:match_id,:customer_id, player_scorings_attributes:
-      [:scoring_id,:competitor_id,:score,:review])
+      [:scoring_id,:competitor_id,:score,:review,:id])
   end
 
 end

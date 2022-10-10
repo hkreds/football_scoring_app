@@ -1,4 +1,4 @@
-<h3 class="px-2 ml-3" style="width:fit-content;background-color:#e4e4e4;">
+<h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
   <%= link_to match_path(@scoring.match.id) do %>
     <%= @scoring.match.convention.name %><br>
     <%= @scoring.match.home_team.name %> vs <%= @scoring.match.away_team.name %>
@@ -31,8 +31,8 @@
 </h5>
 <h4 class="px-2 mb-1 ml-3" style="width:fit-content;background-color:#e4e4e4;">出場選手一覧</h3>
 <div class="row">
-  <div class="border-right pr-3 mx-3">
-    <table class="table table-hover">
+  <div class="border-right pr-3" style="width:50%;">
+    <table class="table table-sm table-hover">
       <thead>
         <tr>
           <th colspan="4" class="text-center"><%= @scoring.match.home_team.name %></th>
@@ -59,7 +59,7 @@
               <% if player_scoring.review.present? %>
                 <td colspan="4"><%= player_scoring.review %></td>
               <% else %>
-                <td colspan="4">寸評なし</td>
+                <td colspan="4" class="text-secondary">寸評なし</td>
               <% end %>
             </tr>
           <% end %>
@@ -67,8 +67,8 @@
       </tbody>
     </table>
   </div>
-  <div>
-    <table class="table table-hover">
+  <div class="pl-3"style="width:50%;">
+    <table class="table table-sm table-hover">
       <thead>
         <tr>
           <th colspan="4" class="text-center"><%= @scoring.match.away_team.name %></th>
@@ -95,7 +95,7 @@
               <% if player_scoring.review.present? %>
                 <td colspan="4"><%= player_scoring.review %></td>
               <% else %>
-                <td colspan="4">寸評なし</td>
+                <td colspan="4" class="text-secondary">寸評なし</td>
               <% end %>
             </tr>
           <% end %>

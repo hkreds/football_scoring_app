@@ -13,7 +13,7 @@
 <h4 class="px-2 mb-1 ml-3" style="width:fit-content;background-color:#e4e4e4;">出場選手一覧</h3>
 <%= form_with model: @scoring do |f| %>
   <div class="ml-3" style="width:80%;">
-    <table class="table table-hover">
+    <table class="table table-sm table-hover">
       <thead>
         <tr>
           <th colspan="4" class="text-center"><%= @scoring.match.home_team.name %></th>
@@ -32,14 +32,14 @@
           <% if player_scoring.competitor.team_id == player_scoring.scoring.match.home_team_id %>
             <%= f.fields_for :player_scorings, player_scoring do |edit_player_scoring_form| %>
               <tr>
-                <td class="text-center"><%= player_scoring.competitor.position %></td>
-                <td class="text-center"><%= player_scoring.competitor.uniform_number %></td>
-                <td><%= player_scoring.competitor.player.name %></td>
-                <td><%= edit_player_scoring_form.select :score, [1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0] %></td>
+                <td class="text-center border-dark"><%= player_scoring.competitor.position %></td>
+                <td class="text-center border-dark"><%= player_scoring.competitor.uniform_number %></td>
+                <td class="border-dark"><%= player_scoring.competitor.player.name %></td>
+                <td class="border-dark"><%= edit_player_scoring_form.select :score, [1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0] %></td>
               </tr>
               <tr>
                 <td colspan="4">
-                  <%= edit_player_scoring_form.text_field :review, placeholder:"寸評の記述は任意です。", style: "width:100%;" %>
+                  <%= edit_player_scoring_form.text_field :review, placeholder:"寸評の記述は任意(100文字以内)です。", style: "width:100%;" %>
                   <%= edit_player_scoring_form.hidden_field :competitor_id, :value => player_scoring.competitor.id %>
                 </td>
               </tr>
@@ -48,7 +48,7 @@
         <% end %>
       </tbody>
     </table>
-    <table class="table table-hover">
+    <table class="table table-sm table-hover">
       <thead>
         <tr>
           <th colspan="4" class="text-center"><%= @scoring.match.away_team.name %></th>
@@ -66,14 +66,14 @@
           <% if player_scoring.competitor.team_id == player_scoring.scoring.match.away_team_id %>
             <%= f.fields_for :player_scorings, player_scoring do |edit_player_scoring_form| %>
               <tr>
-                <td class="text-center"><%= player_scoring.competitor.position %></td>
-                <td class="text-center"><%= player_scoring.competitor.uniform_number %></td>
-                <td><%= player_scoring.competitor.player.name %></td>
-                <td><%= edit_player_scoring_form.select :score, [1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0] %></td>
+                <td class="text-center border-dark"><%= player_scoring.competitor.position %></td>
+                <td class="text-center border-dark"><%= player_scoring.competitor.uniform_number %></td>
+                <td class="border-dark"><%= player_scoring.competitor.player.name %></td>
+                <td class="border-dark"><%= edit_player_scoring_form.select :score, [1.0,1.5,2.0,2.5,3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0] %></td>
               </tr>
               <tr>
                 <td colspan="4">
-                  <%= edit_player_scoring_form.text_field :review, placeholder:"寸評の記述は任意です。", style: "width:100%;" %>
+                  <%= edit_player_scoring_form.text_field :review, placeholder:"寸評の記述は任意(100文字以内)です。", style: "width:100%;" %>
                   <%= edit_player_scoring_form.hidden_field :competitor_id, :value => player_scoring.competitor.id %>
                 </td>
               </tr>

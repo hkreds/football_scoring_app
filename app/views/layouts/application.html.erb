@@ -18,7 +18,7 @@
         <%= yield %>
       <% else %>
         <div class="row">
-          <div style ="width:15%;">
+          <div class="col-2">
             <div class="border border-dark mr-3 mb-3" style="height:fit-content;">
               <%= render 'layouts/left_side_head' %>
             </div>
@@ -26,7 +26,7 @@
               <%= render 'layouts/left_side_foot' %>
             </div>
           </div>
-          <div style="width:80%;">
+          <div class="col-10">
             <%= yield %>
           </div>
         </div>
