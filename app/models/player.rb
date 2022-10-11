@@ -14,8 +14,7 @@ class Player < ApplicationRecord
   #誕生日から年齢を計算
   def age
     now = Date.today
-    date_format = "%Y%m%d"
-    (now.strftime(date_format).to_i - birthday.strftime(date_format).to_i) / 10000
+    (now.strftime("%Y%m%d").to_i - birthday.strftime("%Y%m%d").to_i) / 10000
   end
 
 end
