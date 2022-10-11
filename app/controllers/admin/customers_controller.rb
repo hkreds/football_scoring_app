@@ -1,6 +1,7 @@
 class Admin::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
+    @scorings = Scoring.where(customer_id: @customer.id).page(params[:page])
   end
 
   def edit

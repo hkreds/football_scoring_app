@@ -42,3 +42,29 @@
 <h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
   <%= @customer.name %>さんの採点一覧
 </h3>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>試合名</th>
+      <th class="text-center">いいね数</th>
+      <th class="text-center">悪いね数</th>
+      <th class="text-center">コメント数</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @scorings.each do |scoring| %>
+      <tr>
+        <td>
+          <%= scoring.match.convention.name %><br>
+          <%= scoring.match.home_team.name %>vs<%= scoring.match.away_team.name %>
+        </td>
+        <td class="text-center"><%= scoring.favorites.count %></td>
+        <td class="text-center"><%= scoring.unfavorites.count %></td>
+        <td class="text-center"><%= scoring.scoring_comments.count %></td>
+        <td><%= link_to "Show", admin_scoring_path(scoring.id) %></td>
+      </tr>
+    <% end %>
+    <%= paginate @scorings %>
+  </tbody>
+</table>
