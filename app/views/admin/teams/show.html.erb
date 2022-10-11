@@ -1,7 +1,14 @@
 <h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
   <strong><%= @team.name %></strong>の詳細
 </h3>
-<h4 class="px-2 ml-5" style="width:fit-content;background-color:#e4e4e4;">所属選手の登録</h4>
+<div class="row">
+  <div><%= image_tag @team.get_team_image(180,120) %></div>
+  <h5 class="ml-3 d-flex align-items-end">
+    監督: <%= @team.manager %><br>
+    登録選手数: <%= @team.affiliated_players.count %>人
+  </h5>
+</div>
+<h4 class="px-2 ml-5 mt-1" style="width:fit-content;background-color:#e4e4e4;">所属選手の登録</h4>
 <div class="my-">
   <%= form_with model: [:admin, @affiliated_player] do |f| %>
     <%= render 'layouts/errors', obj: @affiliated_player %>
@@ -30,12 +37,15 @@
   <% end %>
 </div>
 <h4 class="px-2 ml-5" style="width:fit-content;background-color:#e4e4e4;">所属選手の一覧</h4>
-<table class="table table-hover">
+<table class="table table-sm table-hover">
   <thead>
     <tr>
       <th>背番号</th>
       <th>ポジション</th>
       <th>選手名</th>
+      <th>生年月日(年齢)</th>
+      <th>身長</th>
+      <th>体重</th>
       <th></th>
     </tr>
   </thead>
@@ -45,7 +55,13 @@
         <td><%= affiliated_player.uniform_number %></td>
         <td><%= affiliated_player.position %></td>
         <td><%= affiliated_player.player.name %></td>
-        <td class="text-center"><%= link_to "編集する", edit_admin_affiliated_player_path(affiliated_player.id), class: "btn btn-success" %></td>
+        <td>
+          <%= affiliated_player.player.birthday.strftime('%Y/%m/%d') %>
+          (<%= affiliated_player.player.age %>歳)
+        </td>
+        <td><%= affiliated_player.player.height %>cm</td>
+        <td><%= affiliated_player.player.weight %>kg</td>
+        <td class="text-center"><%= link_to "編集する", edit_admin_affiliated_player_path(affiliated_player.id), class: "btn btn-sm btn-success" %></td>
       </tr>
     <% end %>
   </tbody>
