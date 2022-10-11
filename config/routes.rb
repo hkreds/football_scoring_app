@@ -41,7 +41,9 @@ Rails.application.routes.draw do
     resources :participating_teams, only: [:create,:edit,:update,:destroy]
     resources :matches, only: [:index,:create,:show,:edit,:update]
     resources :competitors, only: [:create,:edit,:update,:destroy]
-    resources :scorings, only: [:index,:show]
+    resources :scorings, only: [:index,:show] do
+      resources :scoring_comments, only: [:destroy]
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

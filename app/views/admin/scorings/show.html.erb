@@ -1,28 +1,12 @@
 <div class="row">
   <h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
-    <%= link_to match_path(@scoring.match.id) do %>
+    <%= link_to admin_match_path(@scoring.match.id) do %>
       <%= @scoring.match.convention.name %><br>
       <%= @scoring.match.home_team.name %> vs <%= @scoring.match.away_team.name %>
     <% end %>
     <strong> 採点内容</strong>
   </h3>
   <h4 class="ml-3 d-flex align-items-end">採点者:<%= @scoring.customer.name %></h4>
-</div>
-<h3 class="row">
-  <span class=" mx-3 favorite-btn_<%= @scoring.id %>"><%= render "public/favorites/favorite-btn", scoring: @scoring %></span>
-  <span class="unfavorite-btn_<%= @scoring.id %>"><%= render "public/unfavorites/unfavorite-btn", scoring: @scoring %></span>
-</h3>
-<div class="row">
-  <div class="ml-auto mr-5">
-    <% if @scoring.customer.id == current_customer.id %>
-      <%= link_to "編集する", edit_scoring_path(@scoring.id), class: "btn btn-success" %>
-    <% end %>
-  </div>
-  <div>
-    <% if @scoring.customer.id == current_customer.id %>
-      <%= link_to "削除", scoring_path(@scoring.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "ml-2 btn btn-danger" %>
-    <% end %>
-  </div>
 </div>
 <%= @scoring.match.start_time.strftime('%Y/%m/%d %H:%M') %>開始
 <h5 class="text-center">
@@ -108,4 +92,15 @@
   </div>
 </div>
 <h4 class="px-2 mb-1 ml-3" style="width:fit-content;background-color:#e4e4e4;">採点へのコメント</h3>
-<%= render "public/scoring_comments/comment-form", scoring: @scoring, scoring_comment: @scoring_comment %>
+<div>
+  <div>コメント数：<%= @scoring.scoring_comments.count %></div>
+  <div>
+    <% @scoring.scoring_comments.each do |scoring_comment| %>
+      <div>
+        <%= image_tag scoring_comment.customer.get_profile_image(30,20) %>
+        <%= scoring_comment.comment %>
+          <%= link_to "削除", admin_scoring_scoring_comment_path(scoring_comment.scoring, scoring_comment), method: :delete, remote: true , class: "btn btn-sm btn-danger" %>
+      </div>
+    <% end %>
+  </div>
+</div>
