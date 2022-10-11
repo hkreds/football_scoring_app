@@ -7,6 +7,9 @@
     <strong> 採点内容</strong>
   </h3>
   <h4 class="ml-3 d-flex align-items-end">採点者:<%= @scoring.customer.name %></h4>
+  <div class="ml-5 d-flex align-items-end">
+    <%= link_to "採点削除", admin_scoring_path(@scoring), method: :delete, "data-confirm" => "本当に削除しますか？", class: "ml-2 btn btn-danger" %>
+  </div>
 </div>
 <%= @scoring.match.start_time.strftime('%Y/%m/%d %H:%M') %>開始
 <h5 class="text-center">

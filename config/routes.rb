@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     resources :participating_teams, only: [:create,:edit,:update,:destroy]
     resources :matches, only: [:index,:create,:show,:edit,:update]
     resources :competitors, only: [:create,:edit,:update,:destroy]
-    resources :scorings, only: [:index,:show] do
+    resources :scorings, only: [:index,:show,:destroy] do
       resources :scoring_comments, only: [:destroy]
     end
   end
