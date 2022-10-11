@@ -1,2 +1,18 @@
-<h3>採点新着</h3>
+<h5>採点新着(10件)</h5>
+<table>
+  <tbody>
+    <% Scoring.all.order(created_at: :desc).limit(10).each do |scoring| %>
+      <tr>
+        <td>
+          <div>
+            <%= link_to scoring_path(scoring.id) do %>
+              <%= scoring.customer.name %><br>
+              <%= scoring.match.home_team.abbreviation %>vs<%= scoring.match.away_team.abbreviation %>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <div class="mt-5 pr-1 text-right"><%= link_to "採点一覧ページへ", scorings_path %></div>
