@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       end
       resource :relationships, only: [:create, :destroy]
     end
+    post 'customers/guest_sign_in', to: 'customers#guest_sign_in', as: 'guest_sign_in'
     patch 'customers/:id/withdraw' => 'customers#withdraw', as: 'withdraw'
     resources :conventions, only: [:index,:show]
     resources :matches, only: [:show] do

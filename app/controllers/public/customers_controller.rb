@@ -21,6 +21,12 @@ class Public::CustomersController < ApplicationController
     end
   end
   
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to customer_path(customer),notice: 'ゲストログインしました。'
+  end
+  
   def withdraw
     @customer = Customer.find(params[:id])
     @customer.update(is_deleted: true)
