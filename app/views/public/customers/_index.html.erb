@@ -4,10 +4,10 @@
       <th></th>
       <th>名前</th>
       <th class="text-center">採点投稿数</th>
-      <th class="text-center">フォロー数</th>
-      <th class="text-center">フォロワー数</th>
       <th class="text-center">いいね合計</th>
       <th class="text-center">悪いね合計</th>
+      <th class="text-center">フォロー数</th>
+      <th class="text-center">フォロワー数</th>
       <th></th>
     </tr>
   </thead>
@@ -22,6 +22,20 @@
         </td>
         <td class="text-center"><%= customer.scorings.count %></td>
         <td class="text-center">
+          <% customer_has_favorites = 0 %>
+          <% customer.scorings.each do |scoring| %>
+            <% customer_has_favorites += scoring.favorites.count %>
+          <% end %>
+          <%= customer_has_favorites %>
+        </td>
+        <td class="text-center">
+          <% customer_has_unfavorites = 0 %>
+          <% customer.scorings.each do |scoring| %>
+            <% customer_has_unfavorites += scoring.unfavorites.count %>
+          <% end %>
+          <%= customer_has_unfavorites %>
+        </td>
+        <td class="text-center">
           <%= link_to follows_customer_path(customer) do %>
             <%= customer.following_customer.count %>
           <% end %>
@@ -31,8 +45,6 @@
             <%= customer.follower_customer.count %>
           <% end %>
         </td>
-        <td class="text-center"><%=  %></td>
-        <td class="text-center"><%=  %></td>
         <td class="text-center">
           <% if customer.id == current_customer.id %>
             <%= link_to "編集する", edit_customer_path(customer.id), class: "btn btn-success" %>

@@ -33,8 +33,20 @@
         <td class="text-center"><%= customer.scorings.count %></td>
         <td class="text-center"><%= customer.following_customer.count %></td>
         <td class="text-center"><%= customer.follower_customer.count %></td>
-        <td></td>
-        <td></td>
+        <td class="text-center">
+          <% customer_has_favorites = 0 %>
+          <% customer.scorings.each do |scoring| %>
+            <% customer_has_favorites += scoring.favorites.count %>
+          <% end %>
+          <%= customer_has_favorites %>
+        </td>
+        <td class="text-center">
+          <% customer_has_unfavorites = 0 %>
+          <% customer.scorings.each do |scoring| %>
+            <% customer_has_unfavorites += scoring.unfavorites.count %>
+          <% end %>
+          <%= customer_has_unfavorites %>
+        </td>
       </tr>
     <% end %>
     <%= paginate @customers %>
