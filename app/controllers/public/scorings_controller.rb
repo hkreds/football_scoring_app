@@ -11,7 +11,7 @@ class Public::ScoringsController < ApplicationController
       flash[:alert] = "登録しました"
       redirect_to scoring_path(@scoring.id)
     else
-      flash[:alert] = "正しく入力されていません"
+      flash[:alert] = "正しく入力されていません。寸評が100文字を超えているか、既に同じ試合で採点を行っている可能性があります。"
       redirect_to request.referer
     end
   end

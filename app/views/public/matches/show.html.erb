@@ -1,10 +1,16 @@
 <div class="row">
   <h3 class="px-2 ml-3" style="width:fit-content;background-color:#e4e4e4;">
-    <%= @match.convention.name %><br>
-    <%= @match.home_team.name %> vs <%= @match.away_team.name %>
+    <%= link_to convention_path(@match.convention) do %>
+      <%= @match.convention.name %>
+    <% end %>
+    <br><%= @match.home_team.name %> vs <%= @match.away_team.name %>
   </h3>
   <div class="ml-3 d-flex align-items-end">
-    <%= link_to "新規採点を行う", new_match_scoring_path(@match.id), class: "btn btn-secondary" %>
+    <% if @match.competitors.count == 0 %>
+      <P>出場選手が登録されていないため、採点の登録は行えません。</P>
+    <% else %>
+      <%= link_to "新規採点を行う", new_match_scoring_path(@match.id), class: "btn btn-secondary" %>
+    <% end %>
   </div>
 </div>
 <%= @match.start_time.strftime('%Y/%m/%d %H:%M') %>開始

@@ -83,5 +83,9 @@
       </tbody>
     </table>
   </div>
-  <%= f.submit "更新する", class: "btn btn-success" %>
+  <% if @scoring.player_scorings.count == 0 %>
+    採点対象が不在の場合編集できません。
+  <% else %>
+    <%= f.submit "更新する", class: "btn btn-success" %>
+  <% end %>
 <% end %>

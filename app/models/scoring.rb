@@ -16,4 +16,8 @@ class Scoring < ApplicationRecord
     unfavorites.exists?(customer_id: customer.id)
   end
   
+  validates :match_id, uniqueness:{
+    scope: [:customer_id]
+  }
+  
 end
