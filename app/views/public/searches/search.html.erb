@@ -1,7 +1,10 @@
 <% if @range == "Customer" %>
   <h2>会員を "<%= params[:word] %>" で検索</h2>
   <%= render "public/customers/index", customers: @customers %>
-<% else %>
+<% elsif @range == "Team" %>
+  <h2>チームを "<%= params[:word] %>" で検索</h2>
+  <%= render "public/teams/index", teams: @teams %>
+<% elsif @range == "Convention" %>
   <h2>大会を "<%= params[:word] %>" で検索</h2>
   <%= render "public/conventions/index", conventions: @conventions %>
 <% end %>

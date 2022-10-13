@@ -23,5 +23,8 @@ class Team < ApplicationRecord
     end
     team_image.variant(resize_to_limit: [width, height]).processed
   end
-
+  #検索機能
+  def self.looks(word)
+    @team = Team.where(["name like?", "%#{word}%"]).or(Team.where(["abbreviation like?", "%#{word}%"]))
+  end
 end

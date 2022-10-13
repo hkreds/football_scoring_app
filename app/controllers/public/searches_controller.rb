@@ -4,8 +4,10 @@ class Public::SearchesController < ApplicationController
   def search
     @range = params[:range]
     if @range == "Customer"
-      @customers = Customer.looks(params[:word]).page(params[:page])
-    else
+      @customers = Customer.looks(params[:word]).page(params[:page]).per(10)
+    elsif @range == "Team"
+      @teams = Team.looks(params[:word]).page(params[:page])
+    elsif @range == "Convention"
       @conventions = Convention.looks(params[:word]).page(params[:page])
     end
   end

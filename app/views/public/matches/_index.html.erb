@@ -1,0 +1,26 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th class="text-center">試合名</th>
+      <th>開始日時（日本時間）</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% matches.each do |match| %>
+      <tr>
+        <td class="text-center">
+          <%= link_to match_path(match.id) do %>
+            <%= match.home_team.name %> vs <%= match.away_team.name %><br>
+            <% if match.home_goal == nil || match.away_goal == nil %>
+              試合前
+            <% else %>
+              <%= match.home_goal %> - <%= match.away_goal %>
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= match.start_time.strftime('%Y/%m/%d %H:%M') %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
