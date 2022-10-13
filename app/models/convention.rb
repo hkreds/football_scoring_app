@@ -8,4 +8,9 @@ class Convention < ApplicationRecord
   validates :name, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
+  #検索機能
+  def self.looks(word)
+    @convention = Convention.where(["name like?", "%#{word}%"])
+  end
+  
 end

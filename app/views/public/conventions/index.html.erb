@@ -1,24 +1,2 @@
 <h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">大会一覧ページ</h3>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>大会名</th>
-      <th>開始日</th>
-      <th>終了日</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @conventions.each do |convention| %>
-      <tr>
-        <td>
-          <%= link_to convention_path(convention.id) do %>
-            <%= convention.name %>
-          <% end %>
-        </td>
-        <td><%= convention.start_date.strftime('%Y/%m/%d') %></td>
-        <td><%= convention.end_date.strftime('%Y/%m/%d') %></td>
-      </tr>
-    <% end %>
-    <%= paginate @conventions %>
-  </tbody>
-</table>
+<div class="my-3"><%= render "index", conventions: @conventions %></div>

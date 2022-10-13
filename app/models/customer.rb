@@ -46,4 +46,9 @@ class Customer < ApplicationRecord
       customer.name = "ゲスト"
     end
   end
+  #検索機能
+  def self.looks(word)
+    @customer = Customer.where(["name like?", "%#{word}%"])
+  end
+  
 end
