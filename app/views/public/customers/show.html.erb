@@ -20,7 +20,7 @@
     </table>
   </div>
   <div class="col-2 d-flex align-items-end">
-    <% if @customer.id == current_customer.id %>
+    <% if @customer.id == current_customer.id && @customer.name != "ゲスト" %>
       <%= link_to "編集する", edit_customer_path(@customer.id), class: "btn btn-success" %>
     <% end %>
   </div>
