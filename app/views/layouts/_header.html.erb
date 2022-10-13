@@ -59,6 +59,9 @@
           </li>
         <% end %>
       </ul>
+      <% if customer_signed_in? %>
+        <%= render "public/searches/search" %>
+      <% end %>
     </div>
   </nav>
 </header>

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   }
   scope module: :public do
     root to: "homes#top"
+    get "search" => "searches#search"
     resources :customers, only: [:index,:show,:edit,:update] do
       member do
         get :follows, :followers
