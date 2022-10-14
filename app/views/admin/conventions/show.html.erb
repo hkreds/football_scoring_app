@@ -23,13 +23,14 @@
     </table>
   <% end %>
 </div>
-<h4 class="px-2 mb-5 ml-5" style="width:fit-content;background-color:#e4e4e4;">出場チーム一覧</h3>
+<h4 class="px-2 mb-3 ml-5" style="width:fit-content;background-color:#e4e4e4;">出場チーム一覧</h3>
 <ul class="row">
   <% @participating_teams.each do |participating_team| %>
-    <li class="ml-5">
+    <li class="ml-5 mb-1">
       <%= link_to admin_team_path(participating_team.team_id) do %>
         <%= participating_team.team.name %>
       <% end %>
+      <%= link_to "編集", edit_admin_participating_team_path(participating_team), class: "btn btn-sm btn-success" %>
     </li>
   <% end %>
 </ul>
