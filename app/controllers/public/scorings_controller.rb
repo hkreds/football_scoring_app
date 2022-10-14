@@ -17,7 +17,7 @@ class Public::ScoringsController < ApplicationController
   end
 
   def index
-    @scorings = Scoring.page(params[:page])
+    @scorings = Scoring.page(params[:page]).per(10)
   end
 
   def show
