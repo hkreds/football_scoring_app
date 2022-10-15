@@ -13,4 +13,10 @@ class Match < ApplicationRecord
   validates :home_team_id, presence: true
   validates :away_team_id, presence: true
   validates :start_time, presence: true
+  #検索機能
+  def self.looks(word)
+    @ids = Team.where(["name like?", "%#{word}%"]).pluck(:id)
+    @match = Match.where(home_team_id: @ids).or(Match.where(away_team_id: @ids))
+  end
+  
 end

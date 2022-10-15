@@ -1,14 +1,19 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>大会名</th>
       <th class="text-center">試合名</th>
       <th>開始日時（日本時間）</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
     <% matches.each do |match| %>
       <tr>
+        <td>
+          <%= link_to convention_path(match.convention) do %>
+            <%= match.convention.name %>
+          <% end %>
+        </td>
         <td class="text-center">
           <%= link_to match_path(match.id) do %>
             <%= match.home_team.name %> vs <%= match.away_team.name %><br>

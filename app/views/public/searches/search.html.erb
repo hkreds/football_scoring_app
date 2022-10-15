@@ -7,4 +7,7 @@
 <% elsif @range == "Convention" %>
   <h2>大会を "<%= params[:word] %>" で検索</h2>
   <%= render "public/conventions/index", conventions: @conventions %>
+<% elsif @range == "Match" %>
+  <h2>試合を "<%= params[:word] %>" で検索</h2>
+  <%= render "public/matches/index", matches: @matches %>
 <% end %>
