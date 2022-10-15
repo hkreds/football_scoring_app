@@ -30,7 +30,8 @@ class Admin::MatchesController < ApplicationController
     if @match.update(match_params)
       redirect_to admin_matches_path
     else
-      render :edit
+      flash[:alert] = "得点以外の情報は空白にできません。"
+      redirect_to edit_admin_match_path
     end
   end
   

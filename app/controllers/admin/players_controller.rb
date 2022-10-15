@@ -10,7 +10,7 @@ class Admin::PlayersController < ApplicationController
     if @player.save
       redirect_to request.referer
     else
-      @players = Player.all
+      @players = Player.page(params[:page])
       render :index
     end
   end

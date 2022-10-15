@@ -10,5 +10,7 @@ class Match < ApplicationRecord
   has_many :scorings, dependent: :destroy
   
   validates :convention_id, presence: true
+  validates :home_team_id, presence: true
+  validates :away_team_id, presence: true
   validates :start_time, presence: true
 end

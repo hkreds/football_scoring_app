@@ -19,6 +19,8 @@ class Admin::AffiliatedPlayersController < ApplicationController
     @affiliated_player = AffiliatedPlayer.find(params[:id])
     if @affiliated_player.update(affiliated_player_params)
       redirect_to admin_team_path(@affiliated_player.team_id)
+    else
+      render :edit
     end
   end
   
