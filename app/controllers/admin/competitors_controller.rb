@@ -1,4 +1,5 @@
 class Admin::CompetitorsController < ApplicationController
+  before_action :authenticate_admin!
   def create
     @competitor = Competitor.new(competitor_params)
     if @competitor.save

@@ -1,4 +1,5 @@
 class Public::ScoringsController < ApplicationController
+  before_action :authenticate_customer!
   def new
     @scoring = Scoring.new
     @match = Match.find(params[:match_id])

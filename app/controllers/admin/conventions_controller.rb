@@ -1,4 +1,5 @@
 class Admin::ConventionsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @convention = Convention.new
     @conventions = Convention.page(params[:page])

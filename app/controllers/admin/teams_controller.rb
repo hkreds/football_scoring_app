@@ -1,4 +1,5 @@
 class Admin::TeamsController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @team = Team.new
     @teams = Team.page(params[:page])

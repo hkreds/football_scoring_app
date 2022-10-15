@@ -1,4 +1,5 @@
 class Public::ConventionsController < ApplicationController
+  before_action :authenticate_customer!
   def index
     @conventions = Convention.page(params[:page])
   end

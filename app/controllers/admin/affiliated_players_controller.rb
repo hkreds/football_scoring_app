@@ -1,4 +1,5 @@
 class Admin::AffiliatedPlayersController < ApplicationController
+  before_action :authenticate_admin!
   def create
     @affiliated_player = AffiliatedPlayer.new(affiliated_player_params)
     if @affiliated_player.save

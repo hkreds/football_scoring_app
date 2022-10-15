@@ -1,4 +1,5 @@
 class Admin::ParticipatingTeamsController < ApplicationController
+  before_action :authenticate_admin!
   def create
     @participating_team = ParticipatingTeam.new(participating_team_params)
     if @participating_team.save

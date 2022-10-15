@@ -1,4 +1,5 @@
 class Admin::MatchesController < ApplicationController
+  before_action :authenticate_admin!
   def index
     @match = Match.new
     @matches = Match.page(params[:page])
