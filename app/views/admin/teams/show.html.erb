@@ -8,11 +8,11 @@
     登録選手数: <%= @team.affiliated_players.count %>人
   </h5>
 </div>
-<h4 class="px-2 ml-5 mt-1" style="width:fit-content;background-color:#e4e4e4;">所属選手の登録</h4>
-<div class="my-">
+<h4 class="px-2 ml-5 mt-3" style="width:fit-content;background-color:#e4e4e4;">所属選手の登録</h4>
+<div>
   <%= form_with model: [:admin, @affiliated_player] do |f| %>
     <%= render 'layouts/errors', obj: @affiliated_player %>
-    <table class="table table-borderless">
+    <table class="table table-sm table-borderless">
       <thead>
         <tr>
           <th>ポジション</th>
@@ -54,7 +54,11 @@
       <tr>
         <td><%= affiliated_player.uniform_number %></td>
         <td><%= affiliated_player.position %></td>
-        <td><%= affiliated_player.player.name %></td>
+        <td>
+          <%= link_to admin_player_path(affiliated_player.player.id) do %>
+            <%= affiliated_player.player.name %>
+          <% end %>
+        </td>
         <td>
           <%= affiliated_player.player.birthday.strftime('%Y/%m/%d') %>
           (<%= affiliated_player.player.age %>歳)

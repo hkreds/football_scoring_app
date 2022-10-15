@@ -1,3 +1,39 @@
 <h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
   <strong><%= @player.name %></strong>の詳細
 </h3>
+<div class="row">
+  <div style="width:300px;">
+    <table class="table table-sm">
+      <tbody>
+        <tr>
+          <th>id</th>
+          <td><%= @player.id %></td>
+        <tr>
+          <th>生年月日(年齢)</th>
+          <td>
+            <%= @player.birthday.strftime('%Y/%m/%d') %>
+            (<%= @player.age %>歳)
+          </td>
+        </tr>
+        <tr>
+          <th>身長</th>
+          <td><%= @player.height %>cm</td>
+        </tr>
+        <tr>
+          <th>体重</th>
+          <td><%= @player.weight %>kg</td>
+        </tr>
+        <tr>
+          <th>所属チーム</th>
+          <td>
+            <% @player.teams.each do |team| %>
+              <%= link_to admin_team_path(team.id) do %>
+                <%= team.name %><br>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -17,6 +17,7 @@ class Admin::PlayersController < ApplicationController
   
   def show
     @player = Player.find(params[:id])
+    @affiliated_player = AffiliatedPlayer.new
   end
   
   def edit
