@@ -24,7 +24,7 @@
 <h4 class="px-2 mb-1 ml-3" style="width:fit-content;background-color:#e4e4e4;">出場選手一覧</h3>
 <div class="row">
   <div>
-    <table class="table table-hover">
+    <table class="table table-sm table-hover">
       <thead>
         <tr>
           <th colspan="3" class="text-center"><%= @match.home_team.name %></th>
@@ -51,7 +51,7 @@
     </table>
   </div>
   <div class="ml-3">
-    <table class="table table-hover">
+    <table class="table table-sm table-hover">
       <thead>
         <tr>
           <th colspan="3" class="text-center"><%= @match.away_team.name %></th>
@@ -79,34 +79,5 @@
   </div>
 </div>
 <h4 class="px-2 mb-1 ml-3" style="width:fit-content;background-color:#e4e4e4;">採点一覧</h4>
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>会員名</th>
-      <th>試合名</th>
-      <th>いいね数</th>
-      <th>悪いね数</th>
-      <th>コメント数</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @match.scorings.each do |scoring| %>
-      <tr>
-        <td>
-          <%= link_to customer_path(scoring.customer.id) do %>
-            <%= scoring.customer.name %>
-          <% end %>
-        </td>
-        <td>
-          <%= scoring.match.convention.name %><br>
-          <%= scoring.match.home_team.name %>vs<%= scoring.match.away_team.name %>
-        </td>
-        <td class="text-center favorite-btn_<%= scoring.id %>"><%= render "public/favorites/favorite-btn", scoring: scoring %></td>
-        <td class="text-center unfavorite-btn_<%= scoring.id %>"><%= render "public/unfavorites/unfavorite-btn", scoring: scoring %></td>
-        <td class="text-center"><%= scoring.scoring_comments.count %></td>
-        <td><%= link_to "Show",scoring_path(scoring.id) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= paginate @scorings %>
+<%= render "public/scorings/index", scorings: @scorings %>

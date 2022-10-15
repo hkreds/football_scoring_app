@@ -34,14 +34,14 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     @customer.update(is_deleted: true)
     reset_session
-    flash[:notice] = "退会処理を実行いたしました"
+    flash[:alert] = "退会処理を実行いたしました"
     redirect_to root_path
   end
   #いいねした投稿一覧
   def favorites
     @customer = Customer.find(params[:id])
     favorites = Favorite.where(customer_id: @customer.id).pluck(:scoring_id)
-    @favorite_scorings = Scoring.order(id: "ASC").page(params[:page]).find(favorites)
+    @favorite_scorings = Scoring.find(favorites)
   end
   #フォロー・フォロワー機能
   def follows
