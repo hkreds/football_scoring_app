@@ -49,11 +49,27 @@
           <% end %>
         </td>
         <td>
-          <%= player.birthday.strftime('%Y/%m/%d') %>
-          (<%= player.age %>歳)
+          <% unless player.birthday == nil %>
+            <%= player.birthday.strftime('%Y/%m/%d') %>
+            (<%= player.age %>歳)
+          <% else %>
+            データ無し
+          <% end %>
         </td>
-        <td><%= player.height %>cm</td>
-        <td><%= player.weight %>kg</td>
+        <td>
+          <% unless player.height == nil %>
+            <%= player.height %>cm
+          <% else %>
+            データ無し
+          <% end %>
+        </td>
+        <td>
+          <% unless player.weight == nil %>
+            <%= player.weight %>kg
+          <% else %>
+            データ無し
+          <% end %>
+        </td>
         <td class="text-center"><%= link_to "編集する", edit_admin_player_path(player.id), class: "btn btn-sm btn-success" %></td>
       </tr>
     <% end %>

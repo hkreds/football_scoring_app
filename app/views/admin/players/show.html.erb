@@ -11,25 +11,45 @@
         <tr>
           <th>生年月日(年齢)</th>
           <td>
-            <%= @player.birthday.strftime('%Y/%m/%d') %>
-            (<%= @player.age %>歳)
+            <% unless @player.birthday == nil %>
+              <%= @player.birthday.strftime('%Y/%m/%d') %>
+              (<%= @player.age %>歳)
+            <% else %>
+              データ無し
+            <% end %>
           </td>
         </tr>
         <tr>
           <th>身長</th>
-          <td><%= @player.height %>cm</td>
+          <td>
+            <% unless @player.height == nil %>
+              <%= @player.height %>cm
+            <% else %>
+              データ無し
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th>体重</th>
-          <td><%= @player.weight %>kg</td>
+          <td>
+            <% unless @player.weight == nil %>
+              <%= @player.weight %>kg
+            <% else %>
+              データ無し
+            <% end %>
+          </td>
         </tr>
         <tr>
           <th>所属チーム</th>
           <td>
-            <% @player.teams.each do |team| %>
-              <%= link_to admin_team_path(team.id) do %>
-                <%= team.name %><br>
+            <% if @player.teams.present? %>
+              <% @player.teams.each do |team| %>
+                <%= link_to admin_team_path(team.id) do %>
+                  <%= team.name %><br>
+                <% end %>
               <% end %>
+            <% else %>
+              所属無し
             <% end %>
           </td>
         </tr>

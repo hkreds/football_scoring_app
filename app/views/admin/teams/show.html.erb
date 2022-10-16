@@ -60,8 +60,12 @@
           <% end %>
         </td>
         <td>
-          <%= affiliated_player.player.birthday.strftime('%Y/%m/%d') %>
-          (<%= affiliated_player.player.age %>歳)
+          <% unless affiliated_player.player.birthday == nil %>
+            <%= affiliated_player.player.birthday.strftime('%Y/%m/%d') %>
+            (<%= affiliated_player.player.age %>歳)
+          <% else %>
+            データ無し
+          <% end %>
         </td>
         <td><%= affiliated_player.player.height %>cm</td>
         <td><%= affiliated_player.player.weight %>kg</td>

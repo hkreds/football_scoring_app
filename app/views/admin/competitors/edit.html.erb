@@ -19,7 +19,13 @@
         <tbody>
           <tr>
             <td><%= f.collection_select :position, Competitor.positions_i18n, :first, :last %></td>
-            <td><%= f.collection_select :player_id, Player.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+            <td>
+              <% if @competitor.team_id == @match.home_team.id %>
+                <%= f.collection_select :player_id, @match.home_team.players.all, :id, :name, {include_blank: "--選択してください--"} %>
+              <% else %>
+                <%= f.collection_select :player_id, @match.away_team.players.all, :id, :name, {include_blank: "--選択してください--"} %>
+              <% end %>
+            </td>
             <td><%= f.text_field :uniform_number, :size=>"1" %></td>
           </tr>
           <tr>
