@@ -8,7 +8,16 @@ class Public::CustomersController < ApplicationController
   
   def show
     @customer = Customer.find(params[:id])
-    @scorings = Scoring.where(customer_id: @customer.id).page(params[:page])
+    if params[:newer]
+      @scorings = @customer.scorings.newer.page(params[:page]).per(10)
+    elsif params[:older]
+      @scorings = @customer.scorings.older.page(params[:page]).per(10)
+    elsif params[:favorites_count]
+      @scorings_favorites = @customer.scorings.favorites_count
+      @scorings = Kaminari.paginate_array(@scorings_favorites).page(params[:page]).per(10)
+    else
+      @scorings = @customer.scorings.newer.page(params[:page]).per(10)
+    end
   end
   
   def edit
