@@ -20,6 +20,8 @@ __サッカーを愛する全ての人__
 
 ## 設計書
 [ER図](https://app.diagrams.net/#G11c1uU1wjP_N9FEjXXoIikCct6mTtVYnD)
+[テーブル定義書](https://docs.google.com/spreadsheets/d/14_TuiNWcTsFQgJm99jSy14YvAvPxU_nh/edit#gid=1349999531)
+[詳細設計](https://docs.google.com/spreadsheets/d/1yzTVeJCv5tAq-_m333HiZgg19Na5EJLwe7vitQwLJiY/edit#gid=549108681)
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -27,7 +29,3 @@ __サッカーを愛する全ての人__
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
