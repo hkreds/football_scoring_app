@@ -79,5 +79,10 @@
   </div>
 </div>
 <h4 class="px-2 mb-1 ml-3" style="width:fit-content;background-color:#e4e4e4;">採点一覧</h4>
+<p>
+  <%= link_to '新しい順', match_path(newer: "true") %>
+  |<%= link_to '古い順', match_path(older: "true") %>
+  |<%= link_to 'いいね順', match_path(favorites_count: "true") %>
+</p>
 <%= paginate @scorings %>
 <%= render "public/scorings/index", scorings: @scorings %>

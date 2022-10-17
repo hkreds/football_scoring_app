@@ -15,9 +15,13 @@ class Scoring < ApplicationRecord
   def unfavorited_by?(customer)
     unfavorites.exists?(customer_id: customer.id)
   end
-  
+  #並び替え機能
+  scope :newer, -> {order(created_at: :desc)}
+  scope :older, -> {order(created_at: :asc)}
+  scope :favorites_count, -> {includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}}
+
   validates :match_id, uniqueness:{
     scope: [:customer_id]
   }
-  
+
 end

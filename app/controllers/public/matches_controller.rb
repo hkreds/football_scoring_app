@@ -4,6 +4,15 @@ class Public::MatchesController < ApplicationController
     @match = Match.find(params[:id])
     @competitor = Competitor.new
     @competitors = @match.competitors.all
-    @scorings = @match.scorings.page(params[:page]).per(10)
+    if params[:newer]
+      @scorings = @match.scorings.newer.page(params[:page]).per(10)
+    elsif params[:older]
+      @scorings = @match.scorings.older.page(params[:page]).per(10)
+    elsif params[:favorites_count]
+      @scorings_favorites = @match.scorings.favorites_count
+      @scorings = Kaminari.paginate_array(@scorings_favorites).page(params[:page]).per(10)
+    else
+      @scorings = @match.scorings.newer.page(params[:page]).per(10)
+    end
   end
 end
