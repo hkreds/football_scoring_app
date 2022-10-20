@@ -19,6 +19,7 @@ class Scoring < ApplicationRecord
   scope :newer, -> {order(created_at: :desc)}
   scope :older, -> {order(created_at: :asc)}
   scope :favorites_count, -> {includes(:favorites).sort {|a,b| b.favorites.size <=> a.favorites.size}}
+  scope :unfavorites_count, -> {includes(:unfavorites).sort {|a,b| b.unfavorites.size <=> a.unfavorites.size}}
 
   validates :match_id, uniqueness:{
     scope: [:customer_id]
