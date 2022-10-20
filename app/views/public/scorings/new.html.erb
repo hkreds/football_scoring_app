@@ -21,8 +21,8 @@
       </thead>
       <thead>
         <tr>
-          <th>ポジション</th>
-          <th>背番号</th>
+          <th class="text-center">ポジション</th>
+          <th class="text-center">背番号</th>
           <th>選手名</th>
           <th>点数</th>
         </tr>
@@ -33,10 +33,10 @@
             <% new_scoring = competitor.player_scorings.build %>
             <%= f.fields_for :player_scorings, new_scoring do |player_scoring_form| %>
               <tr>
-                <td class="text-center border-dark"><%= competitor.position %></td>
-                <td class="text-center border-dark"><%= competitor.uniform_number %></td>
-                <td class="border-dark"><%= competitor.player.name %></td>
-                <td class="border-dark"><%= player_scoring_form.select :score, [3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0] %></td>
+                <td class="text-center border-dark" style="width:20%;"><%= competitor.position %></td>
+                <td class="text-center border-dark" style="width:20%;"><%= competitor.uniform_number %></td>
+                <td class="border-dark" style="width:40%;"><%= competitor.player.name %></td>
+                <td class="border-dark" style="width:20%;"><%= player_scoring_form.select :score, [3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0] %></td>
               </tr>
               <tr>
                 <td colspan="4">
@@ -57,8 +57,8 @@
       </thead>
       <thead>
         <tr>
-          <th>ポジション</th>
-          <th>背番号</th>
+          <th class="text-center">ポジション</th>
+          <th class="text-center">背番号</th>
           <th>選手名</th>
           <th>点数</th>
         </tr>
@@ -69,10 +69,10 @@
             <% new_scoring = competitor.player_scorings.build %>
             <%= f.fields_for :player_scorings, new_scoring do |player_scoring_form| %>
               <tr>
-                <td class="text-center border-dark"><%= competitor.position %></td>
-                <td class="text-center border-dark"><%= competitor.uniform_number %></td>
-                <td class="border-dark"><%= competitor.player.name %></td>
-                <td class="border-dark"><%= player_scoring_form.select :score, [3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0] %></td>
+                <td class="text-center border-dark" style="width:20%;"><%= competitor.position %></td>
+                <td class="text-center border-dark" style="width:20%;"><%= competitor.uniform_number %></td>
+                <td class="border-dark" style="width:40%;"><%= competitor.player.name %></td>
+                <td class="border-dark" style="width:20%;"><%= player_scoring_form.select :score, [3.0,3.5,4.0,4.5,5.0,5.5,6.0,6.5,7.0,7.5,8.0,8.5,9.0,9.5,10.0] %></td>
               </tr>
               <tr>
                 <td colspan="4">
