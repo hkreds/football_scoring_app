@@ -33,6 +33,12 @@ class Admin::PlayersController < ApplicationController
     end
   end
   
+  def destroy
+    @player = Player.find(params[:id])
+    @player.destroy
+    redirect_to admin_players_path
+  end
+  
   private
 
   def player_params

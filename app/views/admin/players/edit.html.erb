@@ -23,6 +23,9 @@
         <tr>
           <td colspan="3"></td>
           <td><%= f.submit "変更する", class: "ml-5 btn btn-success" %></td>
+          <td>
+            <%= link_to "削除", admin_player_path(@player.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "ml-2 btn btn-danger" %>
+          </td>
         </tr>
       </tbody>
     </table>
