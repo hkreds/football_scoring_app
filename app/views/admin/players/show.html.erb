@@ -56,4 +56,35 @@
       </tbody>
     </table>
   </div>
+  <div class="ml-3">
+    <div style="width:fit-content;background-color:#e4e4e4;">所属先登録</div>
+    <div class="ml-3">
+      <%= form_with model: [:admin, @affiliated_player] do |f| %>
+        <%= render 'layouts/errors', obj: @affiliated_player %>
+        <table class="table table-sm table-borderless">
+          <thead>
+            <tr>
+              <th>ポジション</th>
+              <th>背番号</th>
+              <th>選手名</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= f.collection_select :position, AffiliatedPlayer.positions_i18n, :first, :last %></td>
+              <td><%= f.number_field :uniform_number %></td>
+              <td><%= f.collection_select :team_id,  Team.all, :id, :name, {include_blank: "--選択してください--"} %></td>
+              <td><%= f.hidden_field :player_id, :value => @player.id %></td>
+            </tr>
+            <tr>
+              <td colspan="2"></td>
+              <td class="text-right"><%= f.submit "新規登録", class: "btn btn-primary" %></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
 </div>

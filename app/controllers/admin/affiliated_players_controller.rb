@@ -4,10 +4,10 @@ class Admin::AffiliatedPlayersController < ApplicationController
     @affiliated_player = AffiliatedPlayer.new(affiliated_player_params)
     if @affiliated_player.save
       flash[:alert] = "選手を登録しました"
-      redirect_to admin_team_path(@affiliated_player.team_id)
+      redirect_to request.referer
     else
       flash[:alert] = "正しく入力されていません"
-      redirect_to admin_team_path(@affiliated_player.team_id)
+      redirect_to request.referer
     end
   end
   
