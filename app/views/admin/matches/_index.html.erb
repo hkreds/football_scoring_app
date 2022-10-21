@@ -1,0 +1,34 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>大会名</th>
+      <th class="text-center">試合名</th>
+      <th>開始日時（日本時間）</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% matches.each do |match| %>
+      <tr>
+        <td>
+          <%= link_to admin_convention_path(match.convention_id) do %>
+            <%= match.convention.name %>
+          <% end %>
+        </td>
+        <td class="text-center">
+          <%= link_to admin_match_path(match.id) do %>
+            <%= match.home_team.name %> vs <%= match.away_team.name %><br>
+            <% if match.home_goal == nil || match.away_goal == nil %>
+              試合前
+            <% else %>
+              <%= match.home_goal %> - <%= match.away_goal %>
+            <% end %>
+          <% end %>
+        </td>
+        <td><%= match.start_time.strftime('%Y/%m/%d %H:%M') %></td>
+        <td class="text-center"><%= link_to "編集する", edit_admin_match_path(match.id), class: "btn btn-success" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+  <%= paginate matches %>
+</table>

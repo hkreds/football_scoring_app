@@ -14,5 +14,9 @@ class Player < ApplicationRecord
     now = Date.today
     (now.strftime("%Y%m%d").to_i - birthday.strftime("%Y%m%d").to_i) / 10000
   end
-
+  #検索機能
+  def self.looks(word)
+    @player = Player.where(["name like?", "%#{word}%"])
+  end
+  
 end

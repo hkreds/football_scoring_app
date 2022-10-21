@@ -27,4 +27,5 @@ class Team < ApplicationRecord
   def self.looks(word)
     @team = Team.where(["name like?", "%#{word}%"]).or(Team.where(["abbreviation like?", "%#{word}%"]))
   end
+  
 end

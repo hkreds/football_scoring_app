@@ -2,7 +2,7 @@ class Admin::MatchesController < ApplicationController
   before_action :authenticate_admin!
   def index
     @match = Match.new
-    @matches = Match.order(:start_time).page(params[:page])
+    @matches = Match.order(:start_time).page(params[:page]).per(10)
   end
   
   def create
@@ -10,7 +10,7 @@ class Admin::MatchesController < ApplicationController
     if @match.save
       redirect_to request.referer
     else
-      @matches = Match.page(params[:page])
+      @matches = Match.page(params[:page]).per(10)
       render :index
     end
   end

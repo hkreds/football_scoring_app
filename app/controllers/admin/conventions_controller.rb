@@ -10,7 +10,7 @@ class Admin::ConventionsController < ApplicationController
     if @convention.save
       redirect_to request.referer
     else
-      @conventions = Convention.all
+      @conventions = Convention.page(params[:page])
       render :index
     end
   end

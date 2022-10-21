@@ -65,6 +65,9 @@
       <% if customer_signed_in? %>
         <%= render "public/searches/search_form" %>
       <% end %>
+      <% if admin_signed_in? %>
+        <%= render "admin/searches/search_form" %>
+      <% end %>
     </div>
   </nav>
 </header>

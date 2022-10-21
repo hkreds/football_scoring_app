@@ -1,0 +1,16 @@
+<% if @range == "Player" %>
+  <h2>選手を "<%= params[:word] %>" で検索</h2>
+  <%= render "admin/players/index", players: @players %>
+<% elsif @range == "Team" %>
+  <h2>チームを "<%= params[:word] %>" で検索</h2>
+  <%= render "admin/teams/index", teams: @teams %>
+<% elsif @range == "Convention" %>
+  <h2>大会を "<%= params[:word] %>" で検索</h2>
+  <%= render "admin/conventions/index", conventions: @conventions %>
+<% elsif @range == "Match" %>
+  <h2>試合を "<%= params[:word] %>" で検索</h2>
+  <%= render "admin/matches/index", matches: @matches %>
+<% elsif @range == "Customer" %>
+  <h2>会員を "<%= params[:word] %>" で検索</h2>
+  <%= render "admin/customers/index", customers: @customers %>
+<% end %>

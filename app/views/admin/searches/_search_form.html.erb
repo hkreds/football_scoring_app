@@ -1,0 +1,7 @@
+<div class="search_form pt-1">
+  <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
+    <%= f.text_field :word, placeholder: "部分一致検索　試合はチーム名一つ", style: "width:300px;" %>
+    <%= f.select :range, options_for_select([['選手','Player'],['チーム','Team'],['大会','Convention'],['試合','Match'],['会員','Customer']]) %>
+    <%= f.submit "検索", class: "btn btn-sm btn-info" %>
+  <% end %>
+</div>
