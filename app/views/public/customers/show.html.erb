@@ -25,9 +25,21 @@
     <% end %>
   </div>
 </div>
-<h5 class="mb-3 d-flex justify-content-center">
-  <%= link_to "いいねした採点一覧", favorites_customer_path(@customer) %>
-</h5>
+<div class="row ml-2 mb-3">
+  <div>
+    フォロー数　：
+    <%= link_to follows_customer_path(@customer) do %>
+      <%= @customer.following_customer.count %>
+    <% end %><br>
+    フォロワー数：
+    <%= link_to followers_customer_path(@customer) do %>
+      <%= @customer.follower_customer.count %>
+    <% end %>
+  </div>
+  <h5 class="mx-auto">
+    <%= link_to "いいねした採点一覧", favorites_customer_path(@customer) %>
+  </h5>
+</div>
 <h3 class="px-2" style="width:fit-content;background-color:#e4e4e4;">
   <%= @customer.name %>さんの採点一覧
 </h3>
