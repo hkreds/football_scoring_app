@@ -13,6 +13,18 @@
  *= require_tree .
  *= require_self
  */
+.rotation{
+  animation-name: rotation_anime;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes rotation_anime{
+  0%{ transform:rotate(0deg);}
+  100%{ transform:rotate(-360deg); }
+}
+
 #back {
   position: fixed;
   right: 10px;

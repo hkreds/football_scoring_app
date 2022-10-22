@@ -7,4 +7,14 @@ document.addEventListener("turbolinks:load", function () {
       event.preventDefault();
     });
   });
+  $(function(){
+    $('.icon').mouseover(function(){
+      $('.action').toggleClass('rotation');
+      return false;
+    });
+    $('.icon').mouseout(function(){
+      $('.action').toggleClass('rotation');
+      return false;
+    });
+  });
 });
