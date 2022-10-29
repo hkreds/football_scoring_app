@@ -24,6 +24,7 @@ class Admin::ScoringsController < ApplicationController
   def destroy
     @scoring = Scoring.find(params[:id])
     @scoring.destroy
+    @scoring.player_scorings.destroy_all
     redirect_to admin_scorings_path
   end
 end
