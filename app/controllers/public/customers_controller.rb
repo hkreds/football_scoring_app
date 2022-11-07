@@ -22,6 +22,10 @@ class Public::CustomersController < ApplicationController
   
   def edit
     @customer = Customer.find(params[:id])
+    if @customer.id != current_customer.id
+      redirect_to customer_path(@customer.id)
+      flash[:alert] = "他の会員の情報は編集できません"
+    end
   end
   
   def update
