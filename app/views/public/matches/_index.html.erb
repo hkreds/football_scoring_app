@@ -3,17 +3,14 @@
     <tr>
       <th>大会名</th>
       <th class="text-center">試合名</th>
-      <th>開始日時（日本時間）</th>
+      <th>開始日時(日本)</th>
+      <th>採点数</th>
     </tr>
   </thead>
   <tbody>
     <% matches.each do |match| %>
       <tr>
-        <td>
-          <%= link_to convention_path(match.convention) do %>
-            <%= match.convention.name %>
-          <% end %>
-        </td>
+        <td><%= match.convention.name %></td>
         <td class="text-center">
           <%= link_to match_path(match.id) do %>
             <%= match.home_team.name %> vs <%= match.away_team.name %><br>
@@ -25,6 +22,7 @@
           <% end %>
         </td>
         <td><%= match.start_time.strftime('%Y/%m/%d %H:%M') %></td>
+        <td class="text-center"><%= match.scorings.count %></td>
       </tr>
     <% end %>
   </tbody>
