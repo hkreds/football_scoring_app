@@ -37,6 +37,10 @@ class Public::ScoringsController < ApplicationController
 
   def edit
     @scoring = Scoring.find(params[:id])
+    if @scoring.customer_id != current_customer.id
+      redirect_to scoring_path(@scoring.id)
+      flash[:alert] = "他会員の採点は編集できません"
+    end
   end
 
   def update
