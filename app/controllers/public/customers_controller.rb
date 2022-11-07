@@ -40,7 +40,8 @@ class Public::CustomersController < ApplicationController
   def guest_sign_in
     customer = Customer.guest
     sign_in customer
-    redirect_to customer_path(customer),notice: 'ゲストログインしました。'
+    redirect_to customer_path(customer)
+    flash[:alert] = "ゲストログインしました。"
   end
   
   def withdraw
