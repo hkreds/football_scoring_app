@@ -1,7 +1,7 @@
 <h5>採点新着(10件)</h5>
 <table>
   <tbody>
-    <% Scoring.all.order(created_at: :desc).limit(10).each do |scoring| %>
+    <% Scoring.preload(:customer,:match).all.order(created_at: :desc).limit(10).each do |scoring| %>
       <tr>
         <td>
           <div>
