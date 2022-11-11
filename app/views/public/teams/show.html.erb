@@ -2,7 +2,7 @@
   <strong><%= @team.name %></strong>の詳細
 </h3>
 <div class="row">
-  <div class="mb-3"><%= image_tag @team.get_team_image(180,120) %></div>
+  <div class="mb-3"><%#= image_tag @team.get_team_image(180,120) %></div>
   <h5 class="ml-3 d-flex align-items-end">
     監督: <%= @team.manager %><br>
     登録選手数: <%= @team.affiliated_players.count %>人
