@@ -50,7 +50,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @scoring.player_scorings.each do |player_scoring| %>
+        <% @player_scorings.each do |player_scoring| %>
           <% if player_scoring.competitor.team_id == @scoring.match.home_team_id %>
             <tr>
               <td class="text-center"><%= player_scoring.competitor.position %></td>
@@ -86,7 +86,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @scoring.player_scorings.each do |player_scoring| %>
+        <% @player_scorings.each do |player_scoring| %>
           <% if player_scoring.competitor.team_id == @scoring.match.away_team_id %>
             <tr>
               <td class="text-center"><%= player_scoring.competitor.position %></td>

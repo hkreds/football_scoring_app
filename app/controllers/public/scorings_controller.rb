@@ -3,7 +3,7 @@ class Public::ScoringsController < ApplicationController
   def new
     @scoring = Scoring.new
     @match = Match.find(params[:match_id])
-    @competitors = @match.competitors.all
+    @competitors = Competitor.preload(:player).where(match_id: @match.id)
   end
 
   def create
@@ -19,24 +19,26 @@ class Public::ScoringsController < ApplicationController
 
   def index
     if params[:newer]
-      @scorings = Scoring.newer.page(params[:page]).per(10)
+      @scorings = Scoring.preload(:customer,:match).newer.page(params[:page]).per(10)
     elsif params[:older]
-      @scorings = Scoring.older.page(params[:page]).per(10)
+      @scorings = Scoring.preload(:customer,:match).older.page(params[:page]).per(10)
     elsif params[:favorites_count]
-      @scorings_favorites = Scoring.favorites_count
+      @scorings_favorites = Scoring.preload(:customer,:match).favorites_count
       @scorings = Kaminari.paginate_array(@scorings_favorites).page(params[:page]).per(10)
     else
-      @scorings = Scoring.newer.page(params[:page]).per(10)
+      @scorings = Scoring.preload(:customer,:match).newer.page(params[:page]).per(10)
     end
   end
 
   def show
     @scoring = Scoring.find(params[:id])
+    @player_scorings = PlayerScoring.preload(:competitor).where(scoring_id: @scoring.id)
     @scoring_comment = ScoringComment.new
   end
 
   def edit
     @scoring = Scoring.find(params[:id])
+    @player_scorings = PlayerScoring.preload(:competitor).where(scoring_id: @scoring.id)
     if @scoring.customer_id != current_customer.id
       redirect_to scoring_path(@scoring.id)
       flash[:alert] = "他会員の採点は編集できません"
