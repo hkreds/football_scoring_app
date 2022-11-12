@@ -2,7 +2,7 @@ class Admin::MatchesController < ApplicationController
   before_action :authenticate_admin!
   def index
     @match = Match.new
-    @matches = Match.order(:start_time).page(params[:page]).per(10)
+    @matches = Match.preload(:convention,:home_team,:away_team).order(:start_time).page(params[:page]).per(10)
   end
   
   def create
@@ -18,7 +18,7 @@ class Admin::MatchesController < ApplicationController
   def show
     @match = Match.find(params[:id])
     @competitor = Competitor.new
-    @competitors = @match.competitors.all
+    @competitors = Competitor.preload(:player).where(match_id: @match.id)
   end
   
   def edit
