@@ -18,7 +18,7 @@ class Admin::TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
     @affiliated_player = AffiliatedPlayer.new
-    @affiliated_players = @team.affiliated_players.all
+    @affiliated_players = AffiliatedPlayer.preload(:player).where(team_id: @team.id)
   end
   
   def edit
