@@ -46,12 +46,8 @@
               <td class="text-center"><%= competitor.uniform_number %></td>
               <td style="width:50%;"><%= competitor.player.name %></td>
               <td class="text-center">
-                <% scoring_score = 0 %>
-                <% competitor.player_scorings.each do |player_scoring| %>
-                  <% scoring_score += player_scoring.score %>
-                <% end %>
                 <% if competitor.player_scorings.count > 0 %>
-                  <%= (scoring_score / competitor.player_scorings.count).round(2) %>
+                  <%= competitor.player_scorings.average(:score).round(2) %>
                 <% else %>
                   -
                 <% end %>
@@ -85,12 +81,8 @@
               <td class="text-center"><%= competitor.uniform_number %></td>
               <td style="width:50%;"><%= competitor.player.name %></td>
               <td class="text-center">
-                <% scoring_score = 0 %>
-                <% competitor.player_scorings.each do |player_scoring| %>
-                  <% scoring_score += player_scoring.score %>
-                <% end %>
                 <% if competitor.player_scorings.count > 0 %>
-                  <%= (scoring_score / competitor.player_scorings.count).round(2) %>
+                  <%= competitor.player_scorings.average(:score).round(2) %>
                 <% else %>
                   -
                 <% end %>
