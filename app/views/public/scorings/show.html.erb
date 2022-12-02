@@ -6,11 +6,16 @@
     <% end %>
     <strong> 採点内容</strong>
   </h3>
-  <h4 class="ml-3 d-flex align-items-end">
-    採点者:
-    <%= link_to customer_path(@scoring.customer.id) do %>
-      <%= @scoring.customer.name %>
-    <% end %>
+  <h4 class="ml-3">
+    <div>
+      投稿日時:<%= @scoring.created_at.since(9.hours).strftime('%Y/%m/%d %H:%M') %><br>
+    </div>
+    <div>
+      採点者:
+      <%= link_to customer_path(@scoring.customer.id) do %>
+        <%= @scoring.customer.name %>
+      <% end %>
+    </div>
   </h4>
 </div>
 <h3 class="row">
