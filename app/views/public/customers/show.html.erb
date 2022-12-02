@@ -36,6 +36,15 @@
       <%= @customer.follower_customer.count %>
     <% end %>
   </div>
+  <div class="ml-4 mt-3">
+    <% if @customer.id != current_customer.id %>
+      <% if current_customer.following?(@customer) %>
+        <%= link_to 'フォロー外す', customer_relationships_path(@customer.id), method: :delete, class: "btn btn-sm btn-outline-danger" %>
+      <% else %>
+        <%= link_to 'フォローする', customer_relationships_path(@customer.id), method: :POST, class: "btn btn-sm btn-outline-primary" %>
+      <% end %>
+    <% end %>
+  </div>
   <h5 class="mx-auto">
     <%= link_to "いいねした採点一覧", favorites_customer_path(@customer) %>
   </h5>
