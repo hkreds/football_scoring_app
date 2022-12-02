@@ -29,7 +29,7 @@
             <tr>
               <td><%= f.collection_select :position, Competitor.positions_i18n, :first, :last %></td>
               <td><%= f.collection_select :player_id, @match.home_team.players.all, :id, :name, {include_blank: "--選択してください--"} %></td>
-              <td><%= f.text_field :uniform_number, :size=>"1" %></td>
+              <td><%= f.text_field :uniform_number, :size=>"1", placeholder: "1~99" %></td>
             </tr>
             <tr>
               <td><%= f.hidden_field :team_id, :value => @match.home_team.id %></td>
@@ -58,7 +58,7 @@
             <tr>
               <td><%= f.collection_select :position, Competitor.positions_i18n, :first, :last %></td>
               <td><%= f.collection_select :player_id, @match.away_team.players.all, :id, :name, {include_blank: "--選択してください--"} %></td>
-              <td><%= f.text_field :uniform_number, :size=>"1" %></td>
+              <td><%= f.text_field :uniform_number, :size=>"1", placeholder: "1~99" %></td>
             </tr>
             <tr>
               <td><%= f.hidden_field :team_id, :value => @match.away_team.id %></td>

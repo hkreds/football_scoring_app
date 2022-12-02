@@ -8,7 +8,7 @@ class Competitor < ApplicationRecord
 
   enum position: { GK: 0, DF: 1, MF: 2, FW: 3 }
 
-  validates :uniform_number, presence: true
+  validates :uniform_number, numericality: {greater_than_or_equal_to: 1, less_than_or_equal_to: 99}
   validates :player_id, uniqueness:{
     scope: [:match_id]
   }
